@@ -1,0 +1,23 @@
+%%% ============================================================
+%%%   Filename:	 query5.in
+%%%   CS 365:    Asst. #6
+%%%   Author:    {Matthew Imiolek, Amy O'Connell}
+%%%   Date:      {4/23/19}
+%%% ============================================================
+%%% Glenda is traveling with her vegetarian family. They are on
+%%% a tight budget, but would like to see the Queen. Where
+%%% should they go and how can they expect to eat?
+%%%
+%%% Based off of this we assume Glenda is NoRedMeat, Poor,
+%%% WithFamily, and that the goal is to find a place to EatAt.
+%%% We also assume Glenda is a tourist because she is traveling
+%%% and wants to see the Queen.
+
+NoRedMeat(Glenda).
+Poor(Glenda).
+WithFamily(Glenda).
+Tourist(Glenda).
+
+-(exists z (EatAt(Glenda,z) & $ans(z))).
+
+end_of_list.

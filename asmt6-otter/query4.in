@@ -1,0 +1,18 @@
+%%% ============================================================
+%%%   Filename:	 query4.in
+%%%   CS 365:    Asst. #6
+%%%   Author:    {Matthew Imiolek, Amy O'Connell}
+%%%   Date:      {4/23/19}
+%%% ============================================================
+%%% Phil can’t eat red meat or fish for health reasons. His
+%%% children hate eating chicken. What should they do for lunch?
+%%%
+%%% Based off of this we assumed Phil needed NoRedMeat, was
+%%% WithFamily, and that the goal was to see where they could
+%%% EatAt.
+
+NoRedMeat(Phil).
+WithFamily(Phil).
+-(exists z (EatAt(Phil,z) & $ans(z))).
+
+end_of_list.

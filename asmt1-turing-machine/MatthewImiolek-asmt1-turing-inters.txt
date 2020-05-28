@@ -1,0 +1,293 @@
+
+CL-USER(2): (compile-file "MatthewImiolek-asmt1-turing")
+;;; Compiling file MatthewImiolek-asmt1-turing.lisp
+; While compiling INIT-HASH:
+Warning: Variable HELPER is never used.
+; While compiling MAKE-MY-TM:
+Warning: Free reference to undeclared variable TM assumed special.
+; While compiling TM-RUN:
+Warning: Free reference to undeclared variable KONFIG assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 8614):
+Warning: Free reference to undeclared variable 4-1-1 assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9067):
+Warning: Free reference to undeclared variable MINE assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9288):
+Warning: Free reference to undeclared variable LEFT-ERROR assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9367):
+Warning: Free reference to undeclared variable A assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9393):
+Warning: Free reference to undeclared variable B assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9419):
+Warning: Free reference to undeclared variable C assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9445):
+Warning: Free reference to undeclared variable D assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9471):
+Warning: Free reference to undeclared variable E assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9542):
+Warning: Free reference to undeclared variable F assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9568):
+Warning: Free reference to undeclared variable G assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9594):
+Warning: Free reference to undeclared variable H assumed special.
+; While compiling (:TOP-LEVEL-FORM "MatthewImiolek-asmt1-turing.lisp" 9620):
+Warning: Free reference to undeclared variable I assumed special.
+;;; Writing fasl file MatthewImiolek-asmt1-turing.fasl
+;;; Fasl write complete
+Warning: While compiling these undefined functions were referenced:
+         FANCY-TESTER from position 9670 in MatthewImiolek-asmt1-turing.lisp,
+           9703 in MatthewImiolek-asmt1-turing.lisp, 9736 in
+           MatthewImiolek-asmt1-turing.lisp, 9769 in
+           MatthewImiolek-asmt1-turing.lisp
+         PROBLEM from position 371 in MatthewImiolek-asmt1-turing.lisp, 3040
+           in MatthewImiolek-asmt1-turing.lisp, 3730 in
+           MatthewImiolek-asmt1-turing.lisp, 8504 in
+           MatthewImiolek-asmt1-turing.lisp
+         HEADER from position 262 in MatthewImiolek-asmt1-turing.lisp
+#P"/home/mcimiolek/Desktop/MatthewImiolek-asmt1-turing/MatthewImiolek-asmt1-turing.fasl"
+T
+T
+CL-USER(3): (load "MatthewImiolek-asmt1-turing")
+; Fast loading
+;    /home/mcimiolek/Desktop/MatthewImiolek-asmt1-turing/MatthewImiolek-asmt1-turing.fasl
+;   Loading
+;      /home/mcimiolek/Desktop/MatthewImiolek-asmt1-turing/2019-asmt-helper.lisp
+
+
+====================================
+  CMPU-365, Spring 2019
+  Asmt. 1 (Turing Machine)
+  Matthew Imiolek
+====================================
+
+-------------------------
+ PROBLEM 1: Create an instance of a turing machine
+-------------------------
+
+-------------------------
+ PROBLEM 2: Display the current configuration nicely
+-------------------------
+
+-------------------------
+ PROBLEM 3: Run the Turing Machine
+-------------------------
+
+-------------------------
+ PROBLEM Tests
+-------------------------
+
+Expression: (TM-RUN 4-1-1 A)
+----------------------
+State = 0, Posn = 0, Char = $, Tape = ($ A A A _ _ _)
+Moving Right.
+State = 0, Posn = 1, Char = A, Tape = ($ A A A _ _ _)
+Writing character A at position 2.
+State = 1, Posn = 1, Char = _, Tape = ($ _ A A _ _ _)
+Moving Right.
+State = 0, Posn = 2, Char = A, Tape = ($ _ A A _ _ _)
+Writing character A at position 3.
+State = 1, Posn = 2, Char = _, Tape = ($ _ _ A _ _ _)
+Moving Right.
+State = 0, Posn = 3, Char = A, Tape = ($ _ _ A _ _ _)
+Writing character A at position 4.
+State = 1, Posn = 3, Char = _, Tape = ($ _ _ _ _ _ _)
+Moving Right.
+State = 0, Posn = 4, Char = _, Tape = ($ _ _ _ _ _ _)
+Writing character _ at position 5.
+
+----------------------
+===> State = -1, Posn = 4, Char = _, Tape = ($ _ _ _ _ _ _)
+ TM has HALTED!
+
+Expression: (TM-RUN 4-1-1 B)
+----------------------
+State = 0, Posn = 0, Char = $, Tape = ($ _ _ _ _ _ _)
+Moving Right.
+State = 0, Posn = 1, Char = _, Tape = ($ _ _ _ _ _ _)
+Writing character _ at position 2.
+
+----------------------
+===> State = -1, Posn = 1, Char = _, Tape = ($ _ _ _ _ _ _)
+ TM has HALTED!
+
+Expression: (TM-RUN 4-1-1 C)
+----------------------
+State = 0, Posn = 0, Char = $, Tape = ($ _ A A A A A)
+Moving Right.
+State = 0, Posn = 1, Char = _, Tape = ($ _ A A A A A)
+Writing character _ at position 2.
+
+----------------------
+===> State = -1, Posn = 1, Char = _, Tape = ($ _ A A A A A)
+ TM has HALTED!
+
+Expression: (TM-RUN 4-1-1 D)
+----------------------
+State = 0, Posn = 0, Char = $, Tape = ($ A A _ _ A A)
+Moving Right.
+State = 0, Posn = 1, Char = A, Tape = ($ A A _ _ A A)
+Writing character A at position 2.
+State = 1, Posn = 1, Char = _, Tape = ($ _ A _ _ A A)
+Moving Right.
+State = 0, Posn = 2, Char = A, Tape = ($ _ A _ _ A A)
+Writing character A at position 3.
+State = 1, Posn = 2, Char = _, Tape = ($ _ _ _ _ A A)
+Moving Right.
+State = 0, Posn = 3, Char = _, Tape = ($ _ _ _ _ A A)
+Writing character _ at position 4.
+
+----------------------
+===> State = -1, Posn = 3, Char = _, Tape = ($ _ _ _ _ A A)
+ TM has HALTED!
+
+Expression: (TM-RUN 4-1-1 E)
+----------------------
+State = 0, Posn = 0, Char = $, Tape = ($ D _ _ _ _ _)
+Moving Right.
+
+----------------------
+===> State = 0, Posn = 1, Char = D, Tape = ($ D _ _ _ _ _)
+ ERROR: no known rule for given state and character.
+
+Expression: (TM-RUN MINE E)
+----------------------
+State = 0, Posn = 0, Char = $, Tape = ($ D _ _ _ _ _)
+Moving Right.
+
+----------------------
+===> State = 0, Posn = 1, Char = D, Tape = ($ D _ _ _ _ _)
+ ERROR: no known rule for given state and character.
+
+Expression: (TM-RUN MINE F)
+----------------------
+State = 0, Posn = 0, Char = $, Tape = ($ A A B B C B)
+Moving Right.
+State = 0, Posn = 1, Char = A, Tape = ($ A A B B C B)
+Writing character A at position 2.
+State = 0, Posn = 1, Char = B, Tape = ($ B A B B C B)
+Moving Right.
+State = 0, Posn = 2, Char = A, Tape = ($ B A B B C B)
+Writing character A at position 3.
+State = 0, Posn = 2, Char = B, Tape = ($ B B B B C B)
+Moving Right.
+State = 0, Posn = 3, Char = B, Tape = ($ B B B B C B)
+Moving Right.
+State = 0, Posn = 4, Char = B, Tape = ($ B B B B C B)
+Moving Right.
+State = 0, Posn = 5, Char = C, Tape = ($ B B B B C B)
+Moving Left.
+State = 2, Posn = 4, Char = B, Tape = ($ B B B B C B)
+Writing character B at position 5.
+
+----------------------
+===> State = -1, Posn = 4, Char = B, Tape = ($ B B B B C B)
+ TM has HALTED!
+
+Expression: (TM-RUN MINE G)
+----------------------
+State = 0, Posn = 0, Char = $, Tape = ($ B B _ _ _ C)
+Moving Right.
+State = 0, Posn = 1, Char = B, Tape = ($ B B _ _ _ C)
+Moving Right.
+State = 0, Posn = 2, Char = B, Tape = ($ B B _ _ _ C)
+Moving Right.
+State = 0, Posn = 3, Char = _, Tape = ($ B B _ _ _ C)
+Moving Right.
+State = 1, Posn = 4, Char = _, Tape = ($ B B _ _ _ C)
+Moving Right.
+State = 1, Posn = 5, Char = _, Tape = ($ B B _ _ _ C)
+Moving Right.
+State = 1, Posn = 6, Char = C, Tape = ($ B B _ _ _ C)
+Moving Left.
+State = 2, Posn = 5, Char = _, Tape = ($ B B _ _ _ C)
+Moving Left.
+State = 2, Posn = 4, Char = _, Tape = ($ B B _ _ _ C)
+Moving Left.
+State = 2, Posn = 3, Char = _, Tape = ($ B B _ _ _ C)
+Moving Left.
+State = 2, Posn = 2, Char = B, Tape = ($ B B _ _ _ C)
+Writing character B at position 3.
+
+----------------------
+===> State = -1, Posn = 2, Char = B, Tape = ($ B B _ _ _ C)
+ TM has HALTED!
+
+Expression: (TM-RUN MINE H)
+----------------------
+State = 0, Posn = 0, Char = $, Tape = ($ A A _ A A C)
+Moving Right.
+State = 0, Posn = 1, Char = A, Tape = ($ A A _ A A C)
+Writing character A at position 2.
+State = 0, Posn = 1, Char = B, Tape = ($ B A _ A A C)
+Moving Right.
+State = 0, Posn = 2, Char = A, Tape = ($ B A _ A A C)
+Writing character A at position 3.
+State = 0, Posn = 2, Char = B, Tape = ($ B B _ A A C)
+Moving Right.
+State = 0, Posn = 3, Char = _, Tape = ($ B B _ A A C)
+Moving Right.
+State = 1, Posn = 4, Char = A, Tape = ($ B B _ A A C)
+Writing character A at position 5.
+State = 1, Posn = 4, Char = _, Tape = ($ B B _ _ A C)
+Moving Right.
+State = 1, Posn = 5, Char = A, Tape = ($ B B _ _ A C)
+Writing character A at position 6.
+State = 1, Posn = 5, Char = _, Tape = ($ B B _ _ _ C)
+Moving Right.
+State = 1, Posn = 6, Char = C, Tape = ($ B B _ _ _ C)
+Moving Left.
+State = 2, Posn = 5, Char = _, Tape = ($ B B _ _ _ C)
+Moving Left.
+State = 2, Posn = 4, Char = _, Tape = ($ B B _ _ _ C)
+Moving Left.
+State = 2, Posn = 3, Char = _, Tape = ($ B B _ _ _ C)
+Moving Left.
+State = 2, Posn = 2, Char = B, Tape = ($ B B _ _ _ C)
+Writing character B at position 3.
+
+----------------------
+===> State = -1, Posn = 2, Char = B, Tape = ($ B B _ _ _ C)
+ TM has HALTED!
+
+Expression: (TM-RUN MINE I)
+----------------------
+State = 0, Posn = 0, Char = $, Tape = ($ A A A A A C)
+Moving Right.
+State = 0, Posn = 1, Char = A, Tape = ($ A A A A A C)
+Writing character A at position 2.
+State = 0, Posn = 1, Char = B, Tape = ($ B A A A A C)
+Moving Right.
+State = 0, Posn = 2, Char = A, Tape = ($ B A A A A C)
+Writing character A at position 3.
+State = 0, Posn = 2, Char = B, Tape = ($ B B A A A C)
+Moving Right.
+State = 0, Posn = 3, Char = A, Tape = ($ B B A A A C)
+Writing character A at position 4.
+State = 0, Posn = 3, Char = B, Tape = ($ B B B A A C)
+Moving Right.
+State = 0, Posn = 4, Char = A, Tape = ($ B B B A A C)
+Writing character A at position 5.
+State = 0, Posn = 4, Char = B, Tape = ($ B B B B A C)
+Moving Right.
+State = 0, Posn = 5, Char = A, Tape = ($ B B B B A C)
+Writing character A at position 6.
+State = 0, Posn = 5, Char = B, Tape = ($ B B B B B C)
+Moving Right.
+State = 0, Posn = 6, Char = C, Tape = ($ B B B B B C)
+Moving Left.
+State = 2, Posn = 5, Char = B, Tape = ($ B B B B B C)
+Writing character B at position 6.
+
+----------------------
+===> State = -1, Posn = 5, Char = B, Tape = ($ B B B B B C)
+ TM has HALTED!
+
+Expression: (TM-RUN LEFT-ERROR B)
+----------------------
+
+----------------------
+===> State = 0, Posn = 0, Char = $, Tape = ($ _ _ _ _ _ _)
+ ERROR: attempt to move left at left end of tape.
+
+T
+CL-USER(4): 
+CL-USER(4): 

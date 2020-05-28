@@ -1,0 +1,899 @@
+----- Otter 3.0.4, August 1995 -----
+The job was started by ??? on dknuth, Thu Apr 25 21:00:26 2019
+The command was "/home/cs365/bin/otter".
+
+set(binary_res).
+   dependent: set(factor).
+   dependent: set(unit_deletion).
+clear(print_kept).
+clear(print_back_sub).
+assign(max_mem,2048).
+assign(max_seconds,60).
+set(free_all_mem).
+
+formula_list(sos).
+all x (Younger(x)|Older(x)).
+all x (WithFamily(x)<->WithSpouse(x)&WithChildren(x)|WithSpouse(x)|WithChildren(x)).
+all x (Alone(x)<-> -WithFamily(x)).
+all x (Married(x)->Older(x)).
+all x (WithSpouse(x)->Married(x)).
+all x (WithChildren(x)->Married(x)).
+all x (Younger(x)->Poor(x)).
+all x (Younger(x)->CanStayOutLate(x)).
+all x (Older(x)-> -LikesStayOutLate(x)).
+all x (-Poor(x)->Rich(x)).
+all y (HatesChildren(y)-> -LikesCrowds(y)).
+all x y (Tourist(x)&PopularSight(y)& -AlreadySeen(x,y)& -SpecialInterests(x)&LikesCrowds(x)->CanVisit(x,y)).
+all z (PopularSight(z)->Sight(z)).
+PopularSight(BigBen).
+PopularSight(TowerOfLondon).
+all x (BuriedAtWest(x)->ImportantPerson(x)).
+ImportantPerson(Queen).
+LivesAt(Queen,BuckinghamPalace).
+all x y (LivesAt(x,y)&ImportantPerson(x)->HasImportantPeople(y)).
+all x (HasImportantPeople(x)->PopularSight(x)).
+all x (PopularSight(x)->Expensive(x)&KeepsRegHours(x)).
+InterestingSight(StPaulsCathedral).
+SatisfiesInterest(StPaulsCathedral,Arch).
+all x y (Tourist(x)& -LikesCrowds(x)& -PopularSight(y)&Sight(y)->CanVisit(x,y)).
+all x y z (Tourist(x)&InterestedIn(x,y)&SatisfiesInterest(z,y)&Sight(z)->CanVisit(x,z)).
+all x (InterestingSight(x)-> -PopularSight(x)).
+all x (InterestingSight(x)-> -Expensive(x)).
+all x (InterestingSight(x)->Sight(x)).
+InterestingSight(SpeakersCornerKG).
+GoodForChildren(KensingtonGardens).
+all x y (GoodForChildren(x)&HatesChildren(y)-> -CanVisit(y,x)).
+all x (-WillingToShop(x)->EatAtRestaurant(x)).
+all x (WillingToShop(x)|EatAtRestaurant(x)).
+all x (NoRedMeat(x)|MustEatRedMeat(x)|EatsWhatever(x)).
+all x y (MustEatRedMeat(x)&ServesMeatDishes(y)->DietMet(x,y)).
+all x y (NoRedMeat(x)&ServesVegetarianDishes(y)->DietMet(x,y)).
+all x y (EatsWhatever(x)->DietMet(x,y)).
+all x (Poor(x)->EatExpensive(x)|VisitExpensive(x)).
+all x (Tourist(x)->VisitExpensive(x)).
+all x y (DietMet(x,y)& -ExpensiveFood(y)->EatAt(x,y)).
+all x y (DietMet(x,y)&ExpensiveFood(y)&EatExpensive(x)->EatAt(x,y)).
+ServesMeatDishes(Porters).
+-ServesVegetarianDishes(Porters).
+ExpensiveFood(Porters).
+ServesVegetarianDishes(ThePlaceBelow).
+-ServesMeatDishes(ThePlaceBelow).
+ExpensiveFood(ThePlaceBelow).
+ServesMeatDishes(Geales).
+-ExpensiveFood(Geales).
+-KeepsRegHours(Geales).
+all x (-KeepsRegHours(x)->AlwaysOpen(x)).
+all x y (DietMet(x,y)&OutLate(x)&AlwaysOpen(y)->EatAt(x,y)).
+ServesMeatDishes(Harrods).
+ServesVegetarianDishes(Harrods).
+ExpensiveFood(Harrods).
+-ServesMeatDishes(Neals).
+ServesVegetarianDishes(Neals).
+-ExpensiveFood(Neals).
+Alone(Billy).
+Tourist(Billy).
+HatesChildren(Billy).
+-(exists z (CanVisit(Billy,z)&$ans(z))).
+end_of_list.
+
+-------> sos clausifies to:
+
+list(sos).
+1 [] Younger(x)|Older(x).
+2 [] -WithFamily(x)|WithSpouse(x)|WithChildren(x).
+3 [] WithFamily(x)| -WithSpouse(x).
+4 [] WithFamily(x)| -WithChildren(x).
+5 [] -Alone(x)| -WithFamily(x).
+6 [] Alone(x)|WithFamily(x).
+7 [] -Married(x)|Older(x).
+8 [] -WithSpouse(x)|Married(x).
+9 [] -WithChildren(x)|Married(x).
+10 [] -Younger(x)|Poor(x).
+11 [] -Younger(x)|CanStayOutLate(x).
+12 [] -Older(x)| -LikesStayOutLate(x).
+13 [] Poor(x)|Rich(x).
+14 [] -HatesChildren(y)| -LikesCrowds(y).
+15 [] -Tourist(x)| -PopularSight(y)|AlreadySeen(x,y)|SpecialInterests(x)| -LikesCrowds(x)|CanVisit(x,y).
+16 [] -PopularSight(z)|Sight(z).
+17 [] PopularSight(BigBen).
+18 [] PopularSight(TowerOfLondon).
+19 [] -BuriedAtWest(x)|ImportantPerson(x).
+20 [] ImportantPerson(Queen).
+21 [] LivesAt(Queen,BuckinghamPalace).
+22 [] -LivesAt(x,y)| -ImportantPerson(x)|HasImportantPeople(y).
+23 [] -HasImportantPeople(x)|PopularSight(x).
+24 [] -PopularSight(x)|Expensive(x).
+25 [] -PopularSight(x)|KeepsRegHours(x).
+26 [] InterestingSight(StPaulsCathedral).
+27 [] SatisfiesInterest(StPaulsCathedral,Arch).
+28 [] -Tourist(x)|LikesCrowds(x)|PopularSight(y)| -Sight(y)|CanVisit(x,y).
+29 [] -Tourist(x)| -InterestedIn(x,y)| -SatisfiesInterest(z,y)| -Sight(z)|CanVisit(x,z).
+30 [] -InterestingSight(x)| -PopularSight(x).
+31 [] -InterestingSight(x)| -Expensive(x).
+32 [] -InterestingSight(x)|Sight(x).
+33 [] InterestingSight(SpeakersCornerKG).
+34 [] GoodForChildren(KensingtonGardens).
+35 [] -GoodForChildren(x)| -HatesChildren(y)| -CanVisit(y,x).
+36 [] WillingToShop(x)|EatAtRestaurant(x).
+37 [] WillingToShop(x)|EatAtRestaurant(x).
+38 [] NoRedMeat(x)|MustEatRedMeat(x)|EatsWhatever(x).
+39 [] -MustEatRedMeat(x)| -ServesMeatDishes(y)|DietMet(x,y).
+40 [] -NoRedMeat(x)| -ServesVegetarianDishes(y)|DietMet(x,y).
+41 [] -EatsWhatever(x)|DietMet(x,y).
+42 [] -Poor(x)|EatExpensive(x)|VisitExpensive(x).
+43 [] -Tourist(x)|VisitExpensive(x).
+44 [] -DietMet(x,y)|ExpensiveFood(y)|EatAt(x,y).
+45 [] -DietMet(x,y)| -ExpensiveFood(y)| -EatExpensive(x)|EatAt(x,y).
+46 [] ServesMeatDishes(Porters).
+47 [] -ServesVegetarianDishes(Porters).
+48 [] ExpensiveFood(Porters).
+49 [] ServesVegetarianDishes(ThePlaceBelow).
+50 [] -ServesMeatDishes(ThePlaceBelow).
+51 [] ExpensiveFood(ThePlaceBelow).
+52 [] ServesMeatDishes(Geales).
+53 [] -ExpensiveFood(Geales).
+54 [] -KeepsRegHours(Geales).
+55 [] KeepsRegHours(x)|AlwaysOpen(x).
+56 [] -DietMet(x,y)| -OutLate(x)| -AlwaysOpen(y)|EatAt(x,y).
+57 [] ServesMeatDishes(Harrods).
+58 [] ServesVegetarianDishes(Harrods).
+59 [] ExpensiveFood(Harrods).
+60 [] -ServesMeatDishes(Neals).
+61 [] ServesVegetarianDishes(Neals).
+62 [] -ExpensiveFood(Neals).
+63 [] Alone(Billy).
+64 [] Tourist(Billy).
+65 [] HatesChildren(Billy).
+66 [] -CanVisit(Billy,z)| -$ans(z).
+end_of_list.
+
+======= end of input processing =======
+
+=========== start of search ===========
+
+given clause #1: (wt=2) 17 [] PopularSight(BigBen).
+
+given clause #2: (wt=2) 18 [] PopularSight(TowerOfLondon).
+
+given clause #3: (wt=2) 20 [] ImportantPerson(Queen).
+
+given clause #4: (wt=2) 26 [] InterestingSight(StPaulsCathedral).
+
+given clause #5: (wt=2) 33 [] InterestingSight(SpeakersCornerKG).
+
+given clause #6: (wt=2) 34 [] GoodForChildren(KensingtonGardens).
+
+given clause #7: (wt=2) 46 [] ServesMeatDishes(Porters).
+
+given clause #8: (wt=2) 47 [] -ServesVegetarianDishes(Porters).
+
+given clause #9: (wt=2) 48 [] ExpensiveFood(Porters).
+
+given clause #10: (wt=2) 49 [] ServesVegetarianDishes(ThePlaceBelow).
+
+given clause #11: (wt=2) 50 [] -ServesMeatDishes(ThePlaceBelow).
+
+given clause #12: (wt=2) 51 [] ExpensiveFood(ThePlaceBelow).
+
+given clause #13: (wt=2) 52 [] ServesMeatDishes(Geales).
+
+given clause #14: (wt=2) 53 [] -ExpensiveFood(Geales).
+
+given clause #15: (wt=2) 54 [] -KeepsRegHours(Geales).
+
+given clause #16: (wt=2) 57 [] ServesMeatDishes(Harrods).
+
+given clause #17: (wt=2) 58 [] ServesVegetarianDishes(Harrods).
+
+given clause #18: (wt=2) 59 [] ExpensiveFood(Harrods).
+
+given clause #19: (wt=2) 60 [] -ServesMeatDishes(Neals).
+
+given clause #20: (wt=2) 61 [] ServesVegetarianDishes(Neals).
+
+given clause #21: (wt=2) 62 [] -ExpensiveFood(Neals).
+
+given clause #22: (wt=2) 63 [] Alone(Billy).
+
+given clause #23: (wt=2) 64 [] Tourist(Billy).
+
+given clause #24: (wt=2) 65 [] HatesChildren(Billy).
+
+given clause #25: (wt=3) 21 [] LivesAt(Queen,BuckinghamPalace).
+
+given clause #26: (wt=3) 27 [] SatisfiesInterest(StPaulsCathedral,Arch).
+
+given clause #27: (wt=3) 66 [] -CanVisit(Billy,z)| -$ans(z).
+
+given clause #28: (wt=4) 1 [] Younger(x)|Older(x).
+
+given clause #29: (wt=4) 3 [] WithFamily(x)| -WithSpouse(x).
+
+given clause #30: (wt=4) 4 [] WithFamily(x)| -WithChildren(x).
+
+given clause #31: (wt=4) 5 [] -Alone(x)| -WithFamily(x).
+
+given clause #32: (wt=2) 67 [binary,5.1,63.1] -WithFamily(Billy).
+
+given clause #33: (wt=2) 70 [binary,67.1,4.1] -WithChildren(Billy).
+
+given clause #34: (wt=2) 71 [binary,67.1,3.1] -WithSpouse(Billy).
+
+given clause #35: (wt=4) 6 [] Alone(x)|WithFamily(x).
+
+given clause #36: (wt=4) 7 [] -Married(x)|Older(x).
+
+given clause #37: (wt=4) 8 [] -WithSpouse(x)|Married(x).
+
+given clause #38: (wt=4) 9 [] -WithChildren(x)|Married(x).
+
+given clause #39: (wt=4) 10 [] -Younger(x)|Poor(x).
+
+given clause #40: (wt=4) 11 [] -Younger(x)|CanStayOutLate(x).
+
+given clause #41: (wt=4) 12 [] -Older(x)| -LikesStayOutLate(x).
+
+given clause #42: (wt=4) 13 [] Poor(x)|Rich(x).
+
+given clause #43: (wt=4) 14 [] -HatesChildren(y)| -LikesCrowds(y).
+
+given clause #44: (wt=2) 78 [binary,14.1,65.1] -LikesCrowds(Billy).
+
+given clause #45: (wt=4) 16 [] -PopularSight(z)|Sight(z).
+
+given clause #46: (wt=2) 79 [binary,16.1,18.1] Sight(TowerOfLondon).
+
+given clause #47: (wt=2) 80 [binary,16.1,17.1] Sight(BigBen).
+
+given clause #48: (wt=4) 19 [] -BuriedAtWest(x)|ImportantPerson(x).
+
+given clause #49: (wt=4) 23 [] -HasImportantPeople(x)|PopularSight(x).
+
+given clause #50: (wt=4) 24 [] -PopularSight(x)|Expensive(x).
+
+given clause #51: (wt=2) 83 [binary,24.1,18.1] Expensive(TowerOfLondon).
+
+given clause #52: (wt=2) 84 [binary,24.1,17.1] Expensive(BigBen).
+
+given clause #53: (wt=4) 25 [] -PopularSight(x)|KeepsRegHours(x).
+
+given clause #54: (wt=2) 86 [binary,25.1,18.1] KeepsRegHours(TowerOfLondon).
+
+given clause #55: (wt=2) 87 [binary,25.1,17.1] KeepsRegHours(BigBen).
+
+given clause #56: (wt=2) 88 [binary,25.2,54.1] -PopularSight(Geales).
+
+given clause #57: (wt=2) 89 [binary,88.1,23.2] -HasImportantPeople(Geales).
+
+given clause #58: (wt=4) 30 [] -InterestingSight(x)| -PopularSight(x).
+
+given clause #59: (wt=2) 90 [binary,30.1,33.1] -PopularSight(SpeakersCornerKG).
+
+given clause #60: (wt=2) 91 [binary,30.1,26.1] -PopularSight(StPaulsCathedral).
+
+given clause #61: (wt=2) 93 [binary,30.2,18.1] -InterestingSight(TowerOfLondon).
+
+given clause #62: (wt=2) 94 [binary,30.2,17.1] -InterestingSight(BigBen).
+
+given clause #63: (wt=2) 95 [binary,90.1,23.2] -HasImportantPeople(SpeakersCornerKG).
+
+given clause #64: (wt=2) 96 [binary,91.1,23.2] -HasImportantPeople(StPaulsCathedral).
+
+given clause #65: (wt=4) 31 [] -InterestingSight(x)| -Expensive(x).
+
+given clause #66: (wt=2) 97 [binary,31.1,33.1] -Expensive(SpeakersCornerKG).
+
+given clause #67: (wt=2) 98 [binary,31.1,26.1] -Expensive(StPaulsCathedral).
+
+given clause #68: (wt=4) 32 [] -InterestingSight(x)|Sight(x).
+
+given clause #69: (wt=2) 99 [binary,32.1,33.1] Sight(SpeakersCornerKG).
+
+given clause #70: (wt=2) 100 [binary,32.1,26.1] Sight(StPaulsCathedral).
+
+given clause #71: (wt=4) 36 [] WillingToShop(x)|EatAtRestaurant(x).
+
+given clause #72: (wt=4) 37 [] WillingToShop(x)|EatAtRestaurant(x).
+
+given clause #73: (wt=4) 43 [] -Tourist(x)|VisitExpensive(x).
+
+given clause #74: (wt=2) 101 [binary,43.1,64.1] VisitExpensive(Billy).
+
+given clause #75: (wt=4) 55 [] KeepsRegHours(x)|AlwaysOpen(x).
+
+given clause #76: (wt=2) 102 [binary,55.1,54.1] AlwaysOpen(Geales).
+
+given clause #77: (wt=4) 68 [binary,5.2,4.1] -Alone(x)| -WithChildren(x).
+
+given clause #78: (wt=4) 69 [binary,5.2,3.1] -Alone(x)| -WithSpouse(x).
+
+given clause #79: (wt=4) 72 [binary,8.2,7.1] -WithSpouse(x)|Older(x).
+
+given clause #80: (wt=4) 73 [binary,9.2,7.1] -WithChildren(x)|Older(x).
+
+given clause #81: (wt=4) 74 [binary,10.1,1.1] Poor(x)|Older(x).
+
+given clause #82: (wt=4) 75 [binary,11.1,1.1] CanStayOutLate(x)|Older(x).
+
+given clause #83: (wt=4) 76 [binary,12.1,7.2] -LikesStayOutLate(x)| -Married(x).
+
+given clause #84: (wt=4) 77 [binary,12.1,1.2] -LikesStayOutLate(x)|Younger(x).
+
+given clause #85: (wt=4) 81 [binary,23.2,16.1] -HasImportantPeople(x)|Sight(x).
+
+given clause #86: (wt=4) 82 [binary,24.1,23.2] Expensive(x)| -HasImportantPeople(x).
+
+given clause #87: (wt=4) 85 [binary,25.1,23.2] KeepsRegHours(x)| -HasImportantPeople(x).
+
+given clause #88: (wt=4) 92 [binary,30.2,23.2] -InterestingSight(x)| -HasImportantPeople(x).
+
+given clause #89: (wt=4) 103 [binary,72.2,12.1] -WithSpouse(x)| -LikesStayOutLate(x).
+
+given clause #90: (wt=4) 104 [binary,73.2,12.1] -WithChildren(x)| -LikesStayOutLate(x).
+
+given clause #91: (wt=4) 105 [binary,74.2,12.1] Poor(x)| -LikesStayOutLate(x).
+
+given clause #92: (wt=4) 106 [binary,75.2,12.1] CanStayOutLate(x)| -LikesStayOutLate(x).
+
+given clause #93: (wt=5) 41 [] -EatsWhatever(x)|DietMet(x,y).
+
+given clause #94: (wt=6) 2 [] -WithFamily(x)|WithSpouse(x)|WithChildren(x).
+
+given clause #95: (wt=6) 38 [] NoRedMeat(x)|MustEatRedMeat(x)|EatsWhatever(x).
+
+given clause #96: (wt=6) 42 [] -Poor(x)|EatExpensive(x)|VisitExpensive(x).
+
+given clause #97: (wt=6) 107 [binary,2.1,6.2] WithSpouse(x)|WithChildren(x)|Alone(x).
+
+given clause #98: (wt=6) 108 [binary,2.2,103.1] -WithFamily(x)|WithChildren(x)| -LikesStayOutLate(x).
+
+given clause #99: (wt=4) 125 [binary,108.2,104.1,factor_simp] -WithFamily(x)| -LikesStayOutLate(x).
+
+given clause #100: (wt=4) 126 [binary,125.1,6.2] -LikesStayOutLate(x)|Alone(x).
+
+given clause #101: (wt=6) 109 [binary,2.2,72.1] -WithFamily(x)|WithChildren(x)|Older(x).
+
+given clause #102: (wt=4) 127 [binary,109.2,73.1,factor_simp] -WithFamily(x)|Older(x).
+
+given clause #103: (wt=4) 128 [binary,127.1,6.2] Older(x)|Alone(x).
+
+given clause #104: (wt=6) 110 [binary,2.2,8.1] -WithFamily(x)|WithChildren(x)|Married(x).
+
+given clause #105: (wt=4) 129 [binary,110.2,9.1,factor_simp] -WithFamily(x)|Married(x).
+
+given clause #106: (wt=4) 130 [binary,129.1,6.2] Married(x)|Alone(x).
+
+given clause #107: (wt=6) 115 [binary,42.1,105.1] EatExpensive(x)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #108: (wt=6) 116 [binary,42.1,74.1] EatExpensive(x)|VisitExpensive(x)|Older(x).
+
+given clause #109: (wt=6) 117 [binary,42.1,13.1] EatExpensive(x)|VisitExpensive(x)|Rich(x).
+
+given clause #110: (wt=6) 118 [binary,42.1,10.2] EatExpensive(x)|VisitExpensive(x)| -Younger(x).
+
+given clause #111: (wt=7) 22 [] -LivesAt(x,y)| -ImportantPerson(x)|HasImportantPeople(y).
+
+given clause #112: (wt=2) 131 [binary,22.1,21.1,unit_del,20] HasImportantPeople(BuckinghamPalace).
+
+given clause #113: (wt=2) 142 [binary,131.1,92.2] -InterestingSight(BuckinghamPalace).
+
+given clause #114: (wt=2) 143 [binary,131.1,85.2] KeepsRegHours(BuckinghamPalace).
+
+given clause #115: (wt=2) 144 [binary,131.1,82.2] Expensive(BuckinghamPalace).
+
+given clause #116: (wt=2) 145 [binary,131.1,81.1] Sight(BuckinghamPalace).
+
+given clause #117: (wt=2) 146 [binary,131.1,23.1] PopularSight(BuckinghamPalace).
+
+given clause #118: (wt=5) 132 [binary,22.2,20.1] -LivesAt(Queen,x)|HasImportantPeople(x).
+
+given clause #119: (wt=3) 147 [binary,132.2,96.1] -LivesAt(Queen,StPaulsCathedral).
+
+given clause #120: (wt=3) 148 [binary,132.2,95.1] -LivesAt(Queen,SpeakersCornerKG).
+
+given clause #121: (wt=3) 150 [binary,132.2,89.1] -LivesAt(Queen,Geales).
+
+given clause #122: (wt=5) 134 [binary,22.3,96.1] -LivesAt(x,StPaulsCathedral)| -ImportantPerson(x).
+
+given clause #123: (wt=5) 135 [binary,22.3,95.1] -LivesAt(x,SpeakersCornerKG)| -ImportantPerson(x).
+
+given clause #124: (wt=5) 137 [binary,22.3,89.1] -LivesAt(x,Geales)| -ImportantPerson(x).
+
+given clause #125: (wt=5) 149 [binary,132.2,92.2] -LivesAt(Queen,x)| -InterestingSight(x).
+
+given clause #126: (wt=5) 151 [binary,132.2,85.2] -LivesAt(Queen,x)|KeepsRegHours(x).
+
+given clause #127: (wt=5) 152 [binary,132.2,82.2] -LivesAt(Queen,x)|Expensive(x).
+
+given clause #128: (wt=5) 153 [binary,132.2,81.1] -LivesAt(Queen,x)|Sight(x).
+
+given clause #129: (wt=5) 154 [binary,132.2,23.1] -LivesAt(Queen,x)|PopularSight(x).
+
+given clause #130: (wt=5) 155 [binary,134.2,19.2] -LivesAt(x,StPaulsCathedral)| -BuriedAtWest(x).
+
+given clause #131: (wt=5) 156 [binary,135.2,19.2] -LivesAt(x,SpeakersCornerKG)| -BuriedAtWest(x).
+
+given clause #132: (wt=5) 157 [binary,137.2,19.2] -LivesAt(x,Geales)| -BuriedAtWest(x).
+
+given clause #133: (wt=7) 35 [] -GoodForChildren(x)| -HatesChildren(y)| -CanVisit(y,x).
+
+given clause #134: (wt=5) 158 [binary,35.1,34.1] -HatesChildren(x)| -CanVisit(x,KensingtonGardens).
+
+given clause #135: (wt=7) 39 [] -MustEatRedMeat(x)| -ServesMeatDishes(y)|DietMet(x,y).
+
+given clause #136: (wt=5) 160 [binary,39.2,57.1] -MustEatRedMeat(x)|DietMet(x,Harrods).
+
+given clause #137: (wt=5) 161 [binary,39.2,52.1] -MustEatRedMeat(x)|DietMet(x,Geales).
+
+given clause #138: (wt=5) 162 [binary,39.2,46.1] -MustEatRedMeat(x)|DietMet(x,Porters).
+
+given clause #139: (wt=7) 40 [] -NoRedMeat(x)| -ServesVegetarianDishes(y)|DietMet(x,y).
+
+given clause #140: (wt=5) 167 [binary,40.2,61.1] -NoRedMeat(x)|DietMet(x,Neals).
+
+given clause #141: (wt=5) 168 [binary,40.2,58.1] -NoRedMeat(x)|DietMet(x,Harrods).
+
+given clause #142: (wt=5) 169 [binary,40.2,49.1] -NoRedMeat(x)|DietMet(x,ThePlaceBelow).
+
+given clause #143: (wt=7) 114 [binary,38.3,41.1] NoRedMeat(x)|MustEatRedMeat(x)|DietMet(x,y).
+
+given clause #144: (wt=5) 173 [binary,114.1,169.1,factor_simp] MustEatRedMeat(x)|DietMet(x,ThePlaceBelow).
+
+given clause #145: (wt=5) 174 [binary,114.1,168.1,factor_simp] MustEatRedMeat(x)|DietMet(x,Harrods).
+
+given clause #146: (wt=3) 187 [binary,174.1,160.1,factor_simp] DietMet(x,Harrods).
+
+given clause #147: (wt=5) 175 [binary,114.1,167.1,factor_simp] MustEatRedMeat(x)|DietMet(x,Neals).
+
+given clause #148: (wt=5) 177 [binary,114.2,162.1,factor_simp] NoRedMeat(x)|DietMet(x,Porters).
+
+given clause #149: (wt=5) 178 [binary,114.2,161.1,factor_simp] NoRedMeat(x)|DietMet(x,Geales).
+
+given clause #150: (wt=5) 193 [factor,192,1,3] DietMet(x,Geales)| -ServesVegetarianDishes(Geales).
+
+given clause #151: (wt=6) 181 [binary,173.1,162.1] DietMet(x,ThePlaceBelow)|DietMet(x,Porters).
+
+given clause #152: (wt=6) 182 [binary,173.1,161.1] DietMet(x,ThePlaceBelow)|DietMet(x,Geales).
+
+given clause #153: (wt=6) 188 [binary,175.1,162.1] DietMet(x,Neals)|DietMet(x,Porters).
+
+given clause #154: (wt=6) 189 [binary,175.1,161.1] DietMet(x,Neals)|DietMet(x,Geales).
+
+given clause #155: (wt=7) 133 [binary,22.2,19.2] -LivesAt(x,y)|HasImportantPeople(y)| -BuriedAtWest(x).
+
+given clause #156: (wt=7) 136 [binary,22.3,92.2] -LivesAt(x,y)| -ImportantPerson(x)| -InterestingSight(y).
+
+given clause #157: (wt=7) 138 [binary,22.3,85.2] -LivesAt(x,y)| -ImportantPerson(x)|KeepsRegHours(y).
+
+given clause #158: (wt=7) 139 [binary,22.3,82.2] -LivesAt(x,y)| -ImportantPerson(x)|Expensive(y).
+
+given clause #159: (wt=7) 140 [binary,22.3,81.1] -LivesAt(x,y)| -ImportantPerson(x)|Sight(y).
+
+given clause #160: (wt=7) 141 [binary,22.3,23.1] -LivesAt(x,y)| -ImportantPerson(x)|PopularSight(y).
+
+given clause #161: (wt=7) 176 [binary,114.1,40.1,factor_simp] MustEatRedMeat(x)|DietMet(x,y)| -ServesVegetarianDishes(y).
+
+given clause #162: (wt=7) 180 [binary,114.2,39.1,factor_simp] NoRedMeat(x)|DietMet(x,y)| -ServesMeatDishes(y).
+
+given clause #163: (wt=7) 194 [binary,133.2,92.2] -LivesAt(x,y)| -BuriedAtWest(x)| -InterestingSight(y).
+
+given clause #164: (wt=7) 195 [binary,133.2,85.2] -LivesAt(x,y)| -BuriedAtWest(x)|KeepsRegHours(y).
+
+given clause #165: (wt=7) 196 [binary,133.2,82.2] -LivesAt(x,y)| -BuriedAtWest(x)|Expensive(y).
+
+given clause #166: (wt=7) 197 [binary,133.2,81.1] -LivesAt(x,y)| -BuriedAtWest(x)|Sight(y).
+
+given clause #167: (wt=7) 198 [binary,133.2,23.1] -LivesAt(x,y)| -BuriedAtWest(x)|PopularSight(y).
+
+given clause #168: (wt=7) 200 [factor,199,1,4] DietMet(x,y)| -ServesVegetarianDishes(y)| -ServesMeatDishes(y).
+
+given clause #169: (wt=8) 44 [] -DietMet(x,y)|ExpensiveFood(y)|EatAt(x,y).
+
+given clause #170: (wt=5) 202 [binary,44.1,193.1,unit_del,53] EatAt(x,Geales)| -ServesVegetarianDishes(Geales).
+
+given clause #171: (wt=5) 208 [binary,44.1,178.2,unit_del,53] EatAt(x,Geales)|NoRedMeat(x).
+
+given clause #172: (wt=5) 210 [binary,44.1,175.2,unit_del,62] EatAt(x,Neals)|MustEatRedMeat(x).
+
+given clause #173: (wt=5) 211 [binary,44.1,167.2,unit_del,62] EatAt(x,Neals)| -NoRedMeat(x).
+
+given clause #174: (wt=5) 212 [binary,44.1,161.2,unit_del,53] EatAt(x,Geales)| -MustEatRedMeat(x).
+
+given clause #175: (wt=6) 203 [binary,44.1,189.2,unit_del,53] EatAt(x,Geales)|DietMet(x,Neals).
+
+given clause #176: (wt=6) 204 [binary,44.1,189.1,unit_del,62] EatAt(x,Neals)|DietMet(x,Geales).
+
+given clause #177: (wt=6) 205 [binary,44.1,188.1,unit_del,62] EatAt(x,Neals)|DietMet(x,Porters).
+
+given clause #178: (wt=6) 206 [binary,44.1,182.2,unit_del,53] EatAt(x,Geales)|DietMet(x,ThePlaceBelow).
+
+given clause #179: (wt=6) 217 [binary,44.2,62.1] -DietMet(x,Neals)|EatAt(x,Neals).
+
+given clause #180: (wt=5) 222 [binary,217.1,41.2] EatAt(x,Neals)| -EatsWhatever(x).
+
+given clause #181: (wt=6) 218 [binary,44.2,53.1] -DietMet(x,Geales)|EatAt(x,Geales).
+
+given clause #182: (wt=5) 223 [binary,218.1,41.2] EatAt(x,Geales)| -EatsWhatever(x).
+
+given clause #183: (wt=6) 221 [binary,211.2,208.2] EatAt(x,Neals)|EatAt(x,Geales).
+
+given clause #184: (wt=7) 214 [binary,44.1,41.2] ExpensiveFood(x)|EatAt(y,x)| -EatsWhatever(y).
+
+given clause #185: (wt=8) 184 [binary,173.1,39.1] DietMet(x,ThePlaceBelow)| -ServesMeatDishes(y)|DietMet(x,y).
+
+given clause #186: (wt=8) 190 [binary,175.1,39.1] DietMet(x,Neals)| -ServesMeatDishes(y)|DietMet(x,y).
+
+given clause #187: (wt=8) 191 [binary,177.1,40.1] DietMet(x,Porters)| -ServesVegetarianDishes(y)|DietMet(x,y).
+
+given clause #188: (wt=8) 192 [binary,178.1,40.1] DietMet(x,Geales)| -ServesVegetarianDishes(y)|DietMet(x,y).
+
+given clause #189: (wt=8) 219 [binary,208.2,40.1] EatAt(x,Geales)| -ServesVegetarianDishes(y)|DietMet(x,y).
+
+given clause #190: (wt=8) 220 [binary,210.2,39.1] EatAt(x,Neals)| -ServesMeatDishes(y)|DietMet(x,y).
+
+given clause #191: (wt=9) 201 [binary,44.1,200.1] ExpensiveFood(x)|EatAt(y,x)| -ServesVegetarianDishes(x)| -ServesMeatDishes(x).
+
+given clause #192: (wt=9) 207 [binary,44.1,180.2] ExpensiveFood(x)|EatAt(y,x)|NoRedMeat(y)| -ServesMeatDishes(x).
+
+given clause #193: (wt=9) 209 [binary,44.1,176.2] ExpensiveFood(x)|EatAt(y,x)|MustEatRedMeat(y)| -ServesVegetarianDishes(x).
+
+given clause #194: (wt=9) 213 [binary,44.1,114.3] ExpensiveFood(x)|EatAt(y,x)|NoRedMeat(y)|MustEatRedMeat(y).
+
+given clause #195: (wt=9) 215 [binary,44.1,40.3] ExpensiveFood(x)|EatAt(y,x)| -NoRedMeat(y)| -ServesVegetarianDishes(x).
+
+given clause #196: (wt=9) 216 [binary,44.1,39.3] ExpensiveFood(x)|EatAt(y,x)| -MustEatRedMeat(y)| -ServesMeatDishes(x).
+
+given clause #197: (wt=10) 45 [] -DietMet(x,y)| -ExpensiveFood(y)| -EatExpensive(x)|EatAt(x,y).
+
+given clause #198: (wt=5) 243 [binary,45.1,187.1,unit_del,59] -EatExpensive(x)|EatAt(x,Harrods).
+
+given clause #199: (wt=7) 250 [binary,45.1,177.2,unit_del,48] -EatExpensive(x)|EatAt(x,Porters)|NoRedMeat(x).
+
+given clause #200: (wt=7) 252 [binary,45.1,173.2,unit_del,51] -EatExpensive(x)|EatAt(x,ThePlaceBelow)|MustEatRedMeat(x).
+
+given clause #201: (wt=7) 253 [binary,45.1,169.2,unit_del,51] -EatExpensive(x)|EatAt(x,ThePlaceBelow)| -NoRedMeat(x).
+
+given clause #202: (wt=7) 254 [binary,45.1,162.2,unit_del,48] -EatExpensive(x)|EatAt(x,Porters)| -MustEatRedMeat(x).
+
+given clause #203: (wt=7) 274 [binary,243.1,118.1] EatAt(x,Harrods)|VisitExpensive(x)| -Younger(x).
+
+given clause #204: (wt=7) 275 [binary,243.1,117.1] EatAt(x,Harrods)|VisitExpensive(x)|Rich(x).
+
+given clause #205: (wt=7) 276 [binary,243.1,116.1] EatAt(x,Harrods)|VisitExpensive(x)|Older(x).
+
+given clause #206: (wt=7) 277 [binary,243.1,115.1] EatAt(x,Harrods)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #207: (wt=7) 278 [binary,243.1,42.2] EatAt(x,Harrods)| -Poor(x)|VisitExpensive(x).
+
+given clause #208: (wt=8) 235 [binary,45.1,206.2,unit_del,51] -EatExpensive(x)|EatAt(x,ThePlaceBelow)|EatAt(x,Geales).
+
+given clause #209: (wt=8) 236 [binary,45.1,205.2,unit_del,48] -EatExpensive(x)|EatAt(x,Porters)|EatAt(x,Neals).
+
+given clause #210: (wt=8) 242 [binary,45.1,188.2,unit_del,48] -EatExpensive(x)|EatAt(x,Porters)|DietMet(x,Neals).
+
+given clause #211: (wt=8) 246 [binary,45.1,182.1,unit_del,51] -EatExpensive(x)|EatAt(x,ThePlaceBelow)|DietMet(x,Geales).
+
+given clause #212: (wt=8) 247 [binary,45.1,181.2,unit_del,48] -EatExpensive(x)|EatAt(x,Porters)|DietMet(x,ThePlaceBelow).
+
+given clause #213: (wt=8) 248 [binary,45.1,181.1,unit_del,51] -EatExpensive(x)|EatAt(x,ThePlaceBelow)|DietMet(x,Porters).
+
+given clause #214: (wt=8) 268 [binary,45.2,44.2,factor_simp,factor_simp] -DietMet(x,y)| -EatExpensive(x)|EatAt(x,y).
+
+given clause #215: (wt=7) 342 [binary,268.1,41.2] -EatExpensive(x)|EatAt(x,y)| -EatsWhatever(x).
+
+given clause #216: (wt=8) 296 [binary,253.3,250.3,factor_simp] -EatExpensive(x)|EatAt(x,ThePlaceBelow)|EatAt(x,Porters).
+
+given clause #217: (wt=9) 279 [binary,250.1,118.1] EatAt(x,Porters)|NoRedMeat(x)|VisitExpensive(x)| -Younger(x).
+
+given clause #218: (wt=9) 280 [binary,250.1,117.1] EatAt(x,Porters)|NoRedMeat(x)|VisitExpensive(x)|Rich(x).
+
+given clause #219: (wt=9) 281 [binary,250.1,116.1] EatAt(x,Porters)|NoRedMeat(x)|VisitExpensive(x)|Older(x).
+
+given clause #220: (wt=9) 282 [binary,250.1,115.1] EatAt(x,Porters)|NoRedMeat(x)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #221: (wt=9) 283 [binary,250.1,42.2] EatAt(x,Porters)|NoRedMeat(x)| -Poor(x)|VisitExpensive(x).
+
+given clause #222: (wt=9) 285 [binary,252.1,118.1] EatAt(x,ThePlaceBelow)|MustEatRedMeat(x)|VisitExpensive(x)| -Younger(x).
+
+given clause #223: (wt=9) 286 [binary,252.1,117.1] EatAt(x,ThePlaceBelow)|MustEatRedMeat(x)|VisitExpensive(x)|Rich(x).
+
+given clause #224: (wt=9) 287 [binary,252.1,116.1] EatAt(x,ThePlaceBelow)|MustEatRedMeat(x)|VisitExpensive(x)|Older(x).
+
+given clause #225: (wt=9) 288 [binary,252.1,115.1] EatAt(x,ThePlaceBelow)|MustEatRedMeat(x)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #226: (wt=9) 289 [binary,252.1,42.2] EatAt(x,ThePlaceBelow)|MustEatRedMeat(x)| -Poor(x)|VisitExpensive(x).
+
+given clause #227: (wt=9) 291 [binary,253.1,118.1] EatAt(x,ThePlaceBelow)| -NoRedMeat(x)|VisitExpensive(x)| -Younger(x).
+
+given clause #228: (wt=9) 292 [binary,253.1,117.1] EatAt(x,ThePlaceBelow)| -NoRedMeat(x)|VisitExpensive(x)|Rich(x).
+
+given clause #229: (wt=9) 293 [binary,253.1,116.1] EatAt(x,ThePlaceBelow)| -NoRedMeat(x)|VisitExpensive(x)|Older(x).
+
+given clause #230: (wt=9) 294 [binary,253.1,115.1] EatAt(x,ThePlaceBelow)| -NoRedMeat(x)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #231: (wt=9) 295 [binary,253.1,42.2] EatAt(x,ThePlaceBelow)| -NoRedMeat(x)| -Poor(x)|VisitExpensive(x).
+
+given clause #232: (wt=9) 297 [binary,254.1,118.1] EatAt(x,Porters)| -MustEatRedMeat(x)|VisitExpensive(x)| -Younger(x).
+
+given clause #233: (wt=9) 298 [binary,254.1,117.1] EatAt(x,Porters)| -MustEatRedMeat(x)|VisitExpensive(x)|Rich(x).
+
+given clause #234: (wt=9) 299 [binary,254.1,116.1] EatAt(x,Porters)| -MustEatRedMeat(x)|VisitExpensive(x)|Older(x).
+
+given clause #235: (wt=9) 300 [binary,254.1,115.1] EatAt(x,Porters)| -MustEatRedMeat(x)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #236: (wt=9) 301 [binary,254.1,42.2] EatAt(x,Porters)| -MustEatRedMeat(x)| -Poor(x)|VisitExpensive(x).
+
+given clause #237: (wt=9) 334 [binary,268.1,200.1] -EatExpensive(x)|EatAt(x,y)| -ServesVegetarianDishes(y)| -ServesMeatDishes(y).
+
+given clause #238: (wt=9) 339 [binary,268.1,180.2] -EatExpensive(x)|EatAt(x,y)|NoRedMeat(x)| -ServesMeatDishes(y).
+
+given clause #239: (wt=9) 340 [binary,268.1,176.2] -EatExpensive(x)|EatAt(x,y)|MustEatRedMeat(x)| -ServesVegetarianDishes(y).
+
+given clause #240: (wt=9) 341 [binary,268.1,114.3] -EatExpensive(x)|EatAt(x,y)|NoRedMeat(x)|MustEatRedMeat(x).
+
+given clause #241: (wt=9) 343 [binary,268.1,40.3] -EatExpensive(x)|EatAt(x,y)| -NoRedMeat(x)| -ServesVegetarianDishes(y).
+
+given clause #242: (wt=9) 344 [binary,268.1,39.3] -EatExpensive(x)|EatAt(x,y)| -MustEatRedMeat(x)| -ServesMeatDishes(y).
+
+given clause #243: (wt=9) 350 [binary,342.1,118.1] EatAt(x,y)| -EatsWhatever(x)|VisitExpensive(x)| -Younger(x).
+
+given clause #244: (wt=9) 351 [binary,342.1,117.1] EatAt(x,y)| -EatsWhatever(x)|VisitExpensive(x)|Rich(x).
+
+given clause #245: (wt=9) 352 [binary,342.1,116.1] EatAt(x,y)| -EatsWhatever(x)|VisitExpensive(x)|Older(x).
+
+given clause #246: (wt=9) 353 [binary,342.1,115.1] EatAt(x,y)| -EatsWhatever(x)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #247: (wt=9) 354 [binary,342.1,42.2] EatAt(x,y)| -EatsWhatever(x)| -Poor(x)|VisitExpensive(x).
+
+given clause #248: (wt=10) 56 [] -DietMet(x,y)| -OutLate(x)| -AlwaysOpen(y)|EatAt(x,y).
+
+given clause #249: (wt=7) 437 [binary,56.1,187.1] -OutLate(x)| -AlwaysOpen(Harrods)|EatAt(x,Harrods).
+
+given clause #250: (wt=7) 454 [binary,437.2,55.2] -OutLate(x)|EatAt(x,Harrods)|KeepsRegHours(Harrods).
+
+given clause #251: (wt=9) 444 [binary,56.1,177.2] -OutLate(x)| -AlwaysOpen(Porters)|EatAt(x,Porters)|NoRedMeat(x).
+
+given clause #252: (wt=9) 446 [binary,56.1,173.2] -OutLate(x)| -AlwaysOpen(ThePlaceBelow)|EatAt(x,ThePlaceBelow)|MustEatRedMeat(x).
+
+given clause #253: (wt=9) 447 [binary,56.1,169.2] -OutLate(x)| -AlwaysOpen(ThePlaceBelow)|EatAt(x,ThePlaceBelow)| -NoRedMeat(x).
+
+given clause #254: (wt=9) 448 [binary,56.1,162.2] -OutLate(x)| -AlwaysOpen(Porters)|EatAt(x,Porters)| -MustEatRedMeat(x).
+
+given clause #255: (wt=9) 450 [binary,56.1,41.2] -OutLate(x)| -AlwaysOpen(y)|EatAt(x,y)| -EatsWhatever(x).
+
+given clause #256: (wt=9) 455 [binary,444.2,55.2] -OutLate(x)|EatAt(x,Porters)|NoRedMeat(x)|KeepsRegHours(Porters).
+
+given clause #257: (wt=9) 457 [binary,446.2,55.2] -OutLate(x)|EatAt(x,ThePlaceBelow)|MustEatRedMeat(x)|KeepsRegHours(ThePlaceBelow).
+
+given clause #258: (wt=9) 459 [binary,447.2,55.2] -OutLate(x)|EatAt(x,ThePlaceBelow)| -NoRedMeat(x)|KeepsRegHours(ThePlaceBelow).
+
+given clause #259: (wt=9) 461 [binary,448.2,55.2] -OutLate(x)|EatAt(x,Porters)| -MustEatRedMeat(x)|KeepsRegHours(Porters).
+
+given clause #260: (wt=9) 462 [binary,450.2,55.2] -OutLate(x)|EatAt(x,y)| -EatsWhatever(x)|KeepsRegHours(y).
+
+given clause #261: (wt=10) 199 [binary,176.1,39.1] DietMet(x,y)| -ServesVegetarianDishes(y)| -ServesMeatDishes(z)|DietMet(x,z).
+
+given clause #262: (wt=10) 224 [binary,184.3,44.1] DietMet(x,ThePlaceBelow)| -ServesMeatDishes(y)|ExpensiveFood(y)|EatAt(x,y).
+
+given clause #263: (wt=10) 225 [binary,190.3,44.1] DietMet(x,Neals)| -ServesMeatDishes(y)|ExpensiveFood(y)|EatAt(x,y).
+
+given clause #264: (wt=10) 226 [binary,191.3,44.1] DietMet(x,Porters)| -ServesVegetarianDishes(y)|ExpensiveFood(y)|EatAt(x,y).
+
+given clause #265: (wt=10) 227 [binary,192.3,44.1] DietMet(x,Geales)| -ServesVegetarianDishes(y)|ExpensiveFood(y)|EatAt(x,y).
+
+given clause #266: (wt=10) 228 [binary,219.3,44.1] EatAt(x,Geales)| -ServesVegetarianDishes(y)|ExpensiveFood(y)|EatAt(x,y).
+
+given clause #267: (wt=10) 229 [binary,220.3,44.1] EatAt(x,Neals)| -ServesMeatDishes(y)|ExpensiveFood(y)|EatAt(x,y).
+
+given clause #268: (wt=10) 240 [binary,45.1,191.1,unit_del,48] -EatExpensive(x)|EatAt(x,Porters)| -ServesVegetarianDishes(y)|DietMet(x,y).
+
+given clause #269: (wt=10) 245 [binary,45.1,184.1,unit_del,51] -EatExpensive(x)|EatAt(x,ThePlaceBelow)| -ServesMeatDishes(y)|DietMet(x,y).
+
+given clause #270: (wt=10) 302 [binary,235.1,118.1] EatAt(x,ThePlaceBelow)|EatAt(x,Geales)|VisitExpensive(x)| -Younger(x).
+
+given clause #271: (wt=10) 303 [binary,235.1,117.1] EatAt(x,ThePlaceBelow)|EatAt(x,Geales)|VisitExpensive(x)|Rich(x).
+
+given clause #272: (wt=10) 304 [binary,235.1,116.1] EatAt(x,ThePlaceBelow)|EatAt(x,Geales)|VisitExpensive(x)|Older(x).
+
+given clause #273: (wt=10) 305 [binary,235.1,115.1] EatAt(x,ThePlaceBelow)|EatAt(x,Geales)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #274: (wt=10) 306 [binary,235.1,42.2] EatAt(x,ThePlaceBelow)|EatAt(x,Geales)| -Poor(x)|VisitExpensive(x).
+
+given clause #275: (wt=10) 307 [binary,236.1,118.1] EatAt(x,Porters)|EatAt(x,Neals)|VisitExpensive(x)| -Younger(x).
+
+given clause #276: (wt=10) 308 [binary,236.1,117.1] EatAt(x,Porters)|EatAt(x,Neals)|VisitExpensive(x)|Rich(x).
+
+given clause #277: (wt=10) 309 [binary,236.1,116.1] EatAt(x,Porters)|EatAt(x,Neals)|VisitExpensive(x)|Older(x).
+
+given clause #278: (wt=10) 310 [binary,236.1,115.1] EatAt(x,Porters)|EatAt(x,Neals)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #279: (wt=10) 311 [binary,236.1,42.2] EatAt(x,Porters)|EatAt(x,Neals)| -Poor(x)|VisitExpensive(x).
+
+given clause #280: (wt=10) 312 [binary,242.1,118.1] EatAt(x,Porters)|DietMet(x,Neals)|VisitExpensive(x)| -Younger(x).
+
+given clause #281: (wt=10) 313 [binary,242.1,117.1] EatAt(x,Porters)|DietMet(x,Neals)|VisitExpensive(x)|Rich(x).
+
+given clause #282: (wt=10) 314 [binary,242.1,116.1] EatAt(x,Porters)|DietMet(x,Neals)|VisitExpensive(x)|Older(x).
+
+given clause #283: (wt=10) 315 [binary,242.1,115.1] EatAt(x,Porters)|DietMet(x,Neals)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #284: (wt=10) 316 [binary,242.1,42.2] EatAt(x,Porters)|DietMet(x,Neals)| -Poor(x)|VisitExpensive(x).
+
+given clause #285: (wt=10) 317 [binary,246.1,118.1] EatAt(x,ThePlaceBelow)|DietMet(x,Geales)|VisitExpensive(x)| -Younger(x).
+
+given clause #286: (wt=10) 318 [binary,246.1,117.1] EatAt(x,ThePlaceBelow)|DietMet(x,Geales)|VisitExpensive(x)|Rich(x).
+
+given clause #287: (wt=10) 319 [binary,246.1,116.1] EatAt(x,ThePlaceBelow)|DietMet(x,Geales)|VisitExpensive(x)|Older(x).
+
+given clause #288: (wt=10) 320 [binary,246.1,115.1] EatAt(x,ThePlaceBelow)|DietMet(x,Geales)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #289: (wt=10) 321 [binary,246.1,42.2] EatAt(x,ThePlaceBelow)|DietMet(x,Geales)| -Poor(x)|VisitExpensive(x).
+
+given clause #290: (wt=10) 322 [binary,247.1,118.1] EatAt(x,Porters)|DietMet(x,ThePlaceBelow)|VisitExpensive(x)| -Younger(x).
+
+given clause #291: (wt=10) 323 [binary,247.1,117.1] EatAt(x,Porters)|DietMet(x,ThePlaceBelow)|VisitExpensive(x)|Rich(x).
+
+given clause #292: (wt=10) 324 [binary,247.1,116.1] EatAt(x,Porters)|DietMet(x,ThePlaceBelow)|VisitExpensive(x)|Older(x).
+
+given clause #293: (wt=10) 325 [binary,247.1,115.1] EatAt(x,Porters)|DietMet(x,ThePlaceBelow)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #294: (wt=10) 326 [binary,247.1,42.2] EatAt(x,Porters)|DietMet(x,ThePlaceBelow)| -Poor(x)|VisitExpensive(x).
+
+given clause #295: (wt=10) 327 [binary,248.1,118.1] EatAt(x,ThePlaceBelow)|DietMet(x,Porters)|VisitExpensive(x)| -Younger(x).
+
+given clause #296: (wt=10) 328 [binary,248.1,117.1] EatAt(x,ThePlaceBelow)|DietMet(x,Porters)|VisitExpensive(x)|Rich(x).
+
+given clause #297: (wt=10) 329 [binary,248.1,116.1] EatAt(x,ThePlaceBelow)|DietMet(x,Porters)|VisitExpensive(x)|Older(x).
+
+given clause #298: (wt=10) 330 [binary,248.1,115.1] EatAt(x,ThePlaceBelow)|DietMet(x,Porters)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #299: (wt=10) 331 [binary,248.1,42.2] EatAt(x,ThePlaceBelow)|DietMet(x,Porters)| -Poor(x)|VisitExpensive(x).
+
+given clause #300: (wt=10) 332 [binary,268.1,220.3] -EatExpensive(x)|EatAt(x,y)|EatAt(x,Neals)| -ServesMeatDishes(y).
+
+given clause #301: (wt=10) 333 [binary,268.1,219.3] -EatExpensive(x)|EatAt(x,y)|EatAt(x,Geales)| -ServesVegetarianDishes(y).
+
+given clause #302: (wt=10) 335 [binary,268.1,192.3] -EatExpensive(x)|EatAt(x,y)|DietMet(x,Geales)| -ServesVegetarianDishes(y).
+
+given clause #303: (wt=10) 336 [binary,268.1,191.3] -EatExpensive(x)|EatAt(x,y)|DietMet(x,Porters)| -ServesVegetarianDishes(y).
+
+given clause #304: (wt=10) 337 [binary,268.1,190.3] -EatExpensive(x)|EatAt(x,y)|DietMet(x,Neals)| -ServesMeatDishes(y).
+
+given clause #305: (wt=10) 338 [binary,268.1,184.3] -EatExpensive(x)|EatAt(x,y)|DietMet(x,ThePlaceBelow)| -ServesMeatDishes(y).
+
+given clause #306: (wt=10) 345 [binary,268.2,118.1] -DietMet(x,y)|EatAt(x,y)|VisitExpensive(x)| -Younger(x).
+
+given clause #307: (wt=10) 346 [binary,268.2,117.1] -DietMet(x,y)|EatAt(x,y)|VisitExpensive(x)|Rich(x).
+
+given clause #308: (wt=10) 347 [binary,268.2,116.1] -DietMet(x,y)|EatAt(x,y)|VisitExpensive(x)|Older(x).
+
+given clause #309: (wt=10) 348 [binary,268.2,115.1] -DietMet(x,y)|EatAt(x,y)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #310: (wt=10) 349 [binary,268.2,42.2] -DietMet(x,y)|EatAt(x,y)| -Poor(x)|VisitExpensive(x).
+
+given clause #311: (wt=10) 355 [binary,296.1,118.1] EatAt(x,ThePlaceBelow)|EatAt(x,Porters)|VisitExpensive(x)| -Younger(x).
+
+given clause #312: (wt=10) 356 [binary,296.1,117.1] EatAt(x,ThePlaceBelow)|EatAt(x,Porters)|VisitExpensive(x)|Rich(x).
+
+given clause #313: (wt=10) 357 [binary,296.1,116.1] EatAt(x,ThePlaceBelow)|EatAt(x,Porters)|VisitExpensive(x)|Older(x).
+
+given clause #314: (wt=10) 358 [binary,296.1,115.1] EatAt(x,ThePlaceBelow)|EatAt(x,Porters)|VisitExpensive(x)| -LikesStayOutLate(x).
+
+given clause #315: (wt=10) 359 [binary,296.1,42.2] EatAt(x,ThePlaceBelow)|EatAt(x,Porters)| -Poor(x)|VisitExpensive(x).
+
+given clause #316: (wt=10) 395 [binary,339.3,253.3,factor_simp] -EatExpensive(x)|EatAt(x,y)| -ServesMeatDishes(y)|EatAt(x,ThePlaceBelow).
+
+given clause #317: (wt=10) 408 [binary,340.3,254.3,factor_simp] -EatExpensive(x)|EatAt(x,y)| -ServesVegetarianDishes(y)|EatAt(x,Porters).
+
+given clause #318: (wt=10) 429 [binary,56.1,206.2] -OutLate(x)| -AlwaysOpen(ThePlaceBelow)|EatAt(x,ThePlaceBelow)|EatAt(x,Geales).
+
+given clause #319: (wt=10) 430 [binary,56.1,205.2] -OutLate(x)| -AlwaysOpen(Porters)|EatAt(x,Porters)|EatAt(x,Neals).
+
+given clause #320: (wt=10) 436 [binary,56.1,188.2] -OutLate(x)| -AlwaysOpen(Porters)|EatAt(x,Porters)|DietMet(x,Neals).
+
+given clause #321: (wt=10) 440 [binary,56.1,182.1] -OutLate(x)| -AlwaysOpen(ThePlaceBelow)|EatAt(x,ThePlaceBelow)|DietMet(x,Geales).
+
+given clause #322: (wt=10) 441 [binary,56.1,181.2] -OutLate(x)| -AlwaysOpen(Porters)|EatAt(x,Porters)|DietMet(x,ThePlaceBelow).
+
+given clause #323: (wt=10) 442 [binary,56.1,181.1] -OutLate(x)| -AlwaysOpen(ThePlaceBelow)|EatAt(x,ThePlaceBelow)|DietMet(x,Porters).
+
+given clause #324: (wt=10) 453 [binary,56.3,55.2] -DietMet(x,y)| -OutLate(x)|EatAt(x,y)|KeepsRegHours(y).
+
+given clause #325: (wt=10) 465 [binary,455.3,211.2] -OutLate(x)|EatAt(x,Porters)|KeepsRegHours(Porters)|EatAt(x,Neals).
+
+given clause #326: (wt=10) 466 [binary,455.3,169.1] -OutLate(x)|EatAt(x,Porters)|KeepsRegHours(Porters)|DietMet(x,ThePlaceBelow).
+
+given clause #327: (wt=10) 467 [binary,455.3,167.1] -OutLate(x)|EatAt(x,Porters)|KeepsRegHours(Porters)|DietMet(x,Neals).
+
+given clause #328: (wt=10) 471 [binary,457.3,212.2] -OutLate(x)|EatAt(x,ThePlaceBelow)|KeepsRegHours(ThePlaceBelow)|EatAt(x,Geales).
+
+given clause #329: (wt=10) 472 [binary,457.3,162.1] -OutLate(x)|EatAt(x,ThePlaceBelow)|KeepsRegHours(ThePlaceBelow)|DietMet(x,Porters).
+
+given clause #330: (wt=10) 473 [binary,457.3,161.1] -OutLate(x)|EatAt(x,ThePlaceBelow)|KeepsRegHours(ThePlaceBelow)|DietMet(x,Geales).
+
+given clause #331: (wt=11) 28 [] -Tourist(x)|LikesCrowds(x)|PopularSight(y)| -Sight(y)|CanVisit(x,y).
+
+given clause #332: (wt=4) 542 [binary,28.1,64.1,unit_del,78,66] PopularSight(x)| -Sight(x)| -$ans(x).
+
+----> UNIT CONFLICT at   0.04 sec ----> 551 [binary,550.1,100.1] -$ans(StPaulsCathedral).
+
+Length of proof is 5.  Level of proof is 3.
+
+---------------- PROOF ----------------
+
+14 [] -HatesChildren(y)| -LikesCrowds(y).
+26 [] InterestingSight(StPaulsCathedral).
+28 [] -Tourist(x)|LikesCrowds(x)|PopularSight(y)| -Sight(y)|CanVisit(x,y).
+30 [] -InterestingSight(x)| -PopularSight(x).
+32 [] -InterestingSight(x)|Sight(x).
+64 [] Tourist(Billy).
+65 [] HatesChildren(Billy).
+66 [] -CanVisit(Billy,z)| -$ans(z).
+78 [binary,14.1,65.1] -LikesCrowds(Billy).
+91 [binary,30.1,26.1] -PopularSight(StPaulsCathedral).
+100 [binary,32.1,26.1] Sight(StPaulsCathedral).
+542 [binary,28.1,64.1,unit_del,78,66] PopularSight(x)| -Sight(x)| -$ans(x).
+550 [binary,542.1,91.1] -Sight(StPaulsCathedral)| -$ans(StPaulsCathedral).
+551 [binary,550.1,100.1] -$ans(StPaulsCathedral).
+
+------------ end of proof -------------
+
+
+Search stopped by max_proofs option.
+
+============ end of search ============
+
+-------------- statistics -------------
+clauses given                332
+clauses generated           2177
+  binary_res generated      2103
+  factors generated           74
+demod & eval rewrites          0
+clauses wt,lit,sk delete       0
+tautologies deleted           18
+clauses forward subsumed    1675
+  (subsumed by sos)          652
+unit deletions               151
+factor simplifications       273
+clauses kept                 484
+new demodulators               0
+empty clauses                  1
+clauses back demodulated       0
+clauses back subsumed         80
+usable size                    0
+sos size                       0
+demodulators size              0
+passive size                   0
+hot size                       0
+Kbytes malloced              351
+
+----------- times (seconds) -----------
+user CPU time          0.04          (0 hr, 0 min, 0 sec)
+system CPU time        0.01          (0 hr, 0 min, 0 sec)
+wall-clock time        0             (0 hr, 0 min, 0 sec)
+input time             0.00
+  clausify time        0.00
+binary_res time        0.00
+pre_process time       0.03
+  renumber time        0.00
+  demod time           0.00
+  order equalities     0.00
+  unit deleletion      0.00
+  factor simplify      0.00
+  weigh cl time        0.00
+  hints keep time      0.00
+  sort lits time       0.00
+  forward subsume      0.01
+  delete cl time       0.00
+  keep cl time         0.00
+    hints time         0.00
+  print_cl time        0.00
+  conflict time        0.00
+  new demod time       0.00
+post_process time      0.00
+  back demod time      0.00
+  back subsume         0.00
+  factor time          0.00
+  unindex time         0.00
+
+The job finished        Thu Apr 25 21:00:26 2019

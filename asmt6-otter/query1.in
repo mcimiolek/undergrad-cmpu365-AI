@@ -1,0 +1,15 @@
+%%% ============================================================
+%%%   Filename:	 query1.in
+%%%   CS 365:    Asst. #6
+%%%   Author:    {Matthew Imiolek, Amy O'Connell}
+%%%   Date:      {4/23/19}
+%%% ============================================================
+%%% Nigel is a happenin’ young bachelor. Can he stay out late?
+%%%
+%%% Based off of this we assumed Nigel was Younger, and that the
+%%% goal was to check CanStayOutLate.
+
+Younger(Nigel).
+- (exists z (CanStayOutLate(z) & $ans(z))).
+
+end_of_list.

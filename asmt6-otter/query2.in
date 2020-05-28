@@ -1,0 +1,20 @@
+%%% ============================================================
+%%%   Filename:	 query2.in
+%%%   CS 365:    Asst. #6
+%%%   Author:    {Matthew Imiolek, Amy O'Connell}
+%%%   Date:      {4/23/19}
+%%% ============================================================
+%%% Billy Bob Jackson is touring solo. He hates little children;
+%%% so he wants to see only sights that families don’t go to.
+%%% What should he see next?
+%%%
+%%% Based off of this we assumed Billy was a Tourist,
+%%% HatesChildren, is Alone, and that the goal is to see where
+%%% Billy CanVisit.
+
+Alone(Billy).
+Tourist(Billy).
+HatesChildren(Billy).
+-(exists z (CanVisit(Billy,z) & $ans(z))).
+
+end_of_list.

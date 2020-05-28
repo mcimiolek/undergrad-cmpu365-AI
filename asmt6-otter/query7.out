@@ -1,0 +1,388 @@
+----- Otter 3.0.4, August 1995 -----
+The job was started by ??? on dknuth, Thu Apr 25 20:46:22 2019
+The command was "/home/cs365/bin/otter".
+
+set(binary_res).
+   dependent: set(factor).
+   dependent: set(unit_deletion).
+clear(print_kept).
+clear(print_back_sub).
+assign(max_mem,2048).
+assign(max_seconds,60).
+set(free_all_mem).
+
+formula_list(sos).
+all x (Younger(x)|Older(x)).
+all x (WithFamily(x)<->WithSpouse(x)&WithChildren(x)|WithSpouse(x)|WithChildren(x)).
+all x (Alone(x)<-> -WithFamily(x)).
+all x (Married(x)->Older(x)).
+all x (WithSpouse(x)->Married(x)).
+all x (WithChildren(x)->Married(x)).
+all x (Younger(x)->Poor(x)).
+all x (Younger(x)->CanStayOutLate(x)).
+all x (Older(x)-> -LikesStayOutLate(x)).
+all x (-Poor(x)->Rich(x)).
+all y (HatesChildren(y)-> -LikesCrowds(y)).
+all x y (Tourist(x)&PopularSight(y)& -AlreadySeen(x,y)& -SpecialInterests(x)&LikesCrowds(x)->CanVisit(x,y)).
+all z (PopularSight(z)->Sight(z)).
+PopularSight(BigBen).
+PopularSight(TowerOfLondon).
+all x (BuriedAtWest(x)->ImportantPerson(x)).
+ImportantPerson(Queen).
+LivesAt(Queen,BuckinghamPalace).
+all x y (LivesAt(x,y)&ImportantPerson(x)->HasImportantPeople(y)).
+all x (HasImportantPeople(x)->PopularSight(x)).
+all x (PopularSight(x)->Expensive(x)&KeepsRegHours(x)).
+InterestingSight(StPaulsCathedral).
+SatisfiesInterest(StPaulsCathedral,Arch).
+all x y (Tourist(x)& -LikesCrowds(x)& -PopularSight(y)&Sight(y)->CanVisit(x,y)).
+all x y z (Tourist(x)&InterestedIn(x,y)&SatisfiesInterest(z,y)&Sight(z)->CanVisit(x,z)).
+all x (InterestingSight(x)-> -PopularSight(x)).
+all x (InterestingSight(x)-> -Expensive(x)).
+all x (InterestingSight(x)->Sight(x)).
+InterestingSight(SpeakersCornerKG).
+GoodForChildren(KensingtonGardens).
+all x y (GoodForChildren(x)&HatesChildren(y)-> -CanVisit(y,x)).
+all x (-WillingToShop(x)->EatAtRestaurant(x)).
+all x (WillingToShop(x)|EatAtRestaurant(x)).
+all x (NoRedMeat(x)|MustEatRedMeat(x)|DoesntCareAboutFood(x)).
+all x y (MustEatRedMeat(x)&ServesMeatDishes(y)->DietMet(x,y)).
+all x y (NoRedMeat(x)&ServesVegetarianDishes(y)->DietMet(x,y)).
+all x y (EatsWhatever(x)->DietMet(x,y)).
+all x (Poor(x)->EatExpensive(x)|VisitExpensive(x)).
+all x (Tourist(x)->VisitExpensive(x)).
+all x y (DietMet(x,y)& -ExpensiveFood(y)->EatAt(x,y)).
+all x y (DietMet(x,y)&ExpensiveFood(y)&EatExpensive(x)->EatAt(x,y)).
+ServesMeatDishes(Porters).
+-ServesVegetarianDishes(Porters).
+ExpensiveFood(Porters).
+ServesVegetarianDishes(ThePlaceBelow).
+-ServesMeatDishes(ThePlaceBelow).
+ExpensiveFood(ThePlaceBelow).
+ServesMeatDishes(Geales).
+-ExpensiveFood(Geales).
+AlwaysOpen(Geales).
+all x y (DietMet(x,y)&OutLate(x)&AlwaysOpen(y)->EatAt(x,y)).
+ServesMeatDishes(Harrods).
+ServesVegetarianDishes(Harrods).
+ExpensiveFood(Harrods).
+-ServesMeatDishes(Neals).
+ServesVegetarianDishes(Neals).
+-ExpensiveFood(Neals).
+WithFamily(Richard).
+Tourist(Richard).
+-(exists z (-LikesStayOutLate(z)&$ans(z))).
+end_of_list.
+
+-------> sos clausifies to:
+
+list(sos).
+1 [] Younger(x)|Older(x).
+2 [] -WithFamily(x)|WithSpouse(x)|WithChildren(x).
+3 [] WithFamily(x)| -WithSpouse(x).
+4 [] WithFamily(x)| -WithChildren(x).
+5 [] -Alone(x)| -WithFamily(x).
+6 [] Alone(x)|WithFamily(x).
+7 [] -Married(x)|Older(x).
+8 [] -WithSpouse(x)|Married(x).
+9 [] -WithChildren(x)|Married(x).
+10 [] -Younger(x)|Poor(x).
+11 [] -Younger(x)|CanStayOutLate(x).
+12 [] -Older(x)| -LikesStayOutLate(x).
+13 [] Poor(x)|Rich(x).
+14 [] -HatesChildren(y)| -LikesCrowds(y).
+15 [] -Tourist(x)| -PopularSight(y)|AlreadySeen(x,y)|SpecialInterests(x)| -LikesCrowds(x)|CanVisit(x,y).
+16 [] -PopularSight(z)|Sight(z).
+17 [] PopularSight(BigBen).
+18 [] PopularSight(TowerOfLondon).
+19 [] -BuriedAtWest(x)|ImportantPerson(x).
+20 [] ImportantPerson(Queen).
+21 [] LivesAt(Queen,BuckinghamPalace).
+22 [] -LivesAt(x,y)| -ImportantPerson(x)|HasImportantPeople(y).
+23 [] -HasImportantPeople(x)|PopularSight(x).
+24 [] -PopularSight(x)|Expensive(x).
+25 [] -PopularSight(x)|KeepsRegHours(x).
+26 [] InterestingSight(StPaulsCathedral).
+27 [] SatisfiesInterest(StPaulsCathedral,Arch).
+28 [] -Tourist(x)|LikesCrowds(x)|PopularSight(y)| -Sight(y)|CanVisit(x,y).
+29 [] -Tourist(x)| -InterestedIn(x,y)| -SatisfiesInterest(z,y)| -Sight(z)|CanVisit(x,z).
+30 [] -InterestingSight(x)| -PopularSight(x).
+31 [] -InterestingSight(x)| -Expensive(x).
+32 [] -InterestingSight(x)|Sight(x).
+33 [] InterestingSight(SpeakersCornerKG).
+34 [] GoodForChildren(KensingtonGardens).
+35 [] -GoodForChildren(x)| -HatesChildren(y)| -CanVisit(y,x).
+36 [] WillingToShop(x)|EatAtRestaurant(x).
+37 [] WillingToShop(x)|EatAtRestaurant(x).
+38 [] NoRedMeat(x)|MustEatRedMeat(x)|DoesntCareAboutFood(x).
+39 [] -MustEatRedMeat(x)| -ServesMeatDishes(y)|DietMet(x,y).
+40 [] -NoRedMeat(x)| -ServesVegetarianDishes(y)|DietMet(x,y).
+41 [] -EatsWhatever(x)|DietMet(x,y).
+42 [] -Poor(x)|EatExpensive(x)|VisitExpensive(x).
+43 [] -Tourist(x)|VisitExpensive(x).
+44 [] -DietMet(x,y)|ExpensiveFood(y)|EatAt(x,y).
+45 [] -DietMet(x,y)| -ExpensiveFood(y)| -EatExpensive(x)|EatAt(x,y).
+46 [] ServesMeatDishes(Porters).
+47 [] -ServesVegetarianDishes(Porters).
+48 [] ExpensiveFood(Porters).
+49 [] ServesVegetarianDishes(ThePlaceBelow).
+50 [] -ServesMeatDishes(ThePlaceBelow).
+51 [] ExpensiveFood(ThePlaceBelow).
+52 [] ServesMeatDishes(Geales).
+53 [] -ExpensiveFood(Geales).
+54 [] AlwaysOpen(Geales).
+55 [] -DietMet(x,y)| -OutLate(x)| -AlwaysOpen(y)|EatAt(x,y).
+56 [] ServesMeatDishes(Harrods).
+57 [] ServesVegetarianDishes(Harrods).
+58 [] ExpensiveFood(Harrods).
+59 [] -ServesMeatDishes(Neals).
+60 [] ServesVegetarianDishes(Neals).
+61 [] -ExpensiveFood(Neals).
+62 [] WithFamily(Richard).
+63 [] Tourist(Richard).
+64 [] LikesStayOutLate(z)| -$ans(z).
+end_of_list.
+
+======= end of input processing =======
+
+=========== start of search ===========
+
+given clause #1: (wt=2) 17 [] PopularSight(BigBen).
+
+given clause #2: (wt=2) 18 [] PopularSight(TowerOfLondon).
+
+given clause #3: (wt=2) 20 [] ImportantPerson(Queen).
+
+given clause #4: (wt=2) 26 [] InterestingSight(StPaulsCathedral).
+
+given clause #5: (wt=2) 33 [] InterestingSight(SpeakersCornerKG).
+
+given clause #6: (wt=2) 34 [] GoodForChildren(KensingtonGardens).
+
+given clause #7: (wt=2) 46 [] ServesMeatDishes(Porters).
+
+given clause #8: (wt=2) 47 [] -ServesVegetarianDishes(Porters).
+
+given clause #9: (wt=2) 48 [] ExpensiveFood(Porters).
+
+given clause #10: (wt=2) 49 [] ServesVegetarianDishes(ThePlaceBelow).
+
+given clause #11: (wt=2) 50 [] -ServesMeatDishes(ThePlaceBelow).
+
+given clause #12: (wt=2) 51 [] ExpensiveFood(ThePlaceBelow).
+
+given clause #13: (wt=2) 52 [] ServesMeatDishes(Geales).
+
+given clause #14: (wt=2) 53 [] -ExpensiveFood(Geales).
+
+given clause #15: (wt=2) 54 [] AlwaysOpen(Geales).
+
+given clause #16: (wt=2) 56 [] ServesMeatDishes(Harrods).
+
+given clause #17: (wt=2) 57 [] ServesVegetarianDishes(Harrods).
+
+given clause #18: (wt=2) 58 [] ExpensiveFood(Harrods).
+
+given clause #19: (wt=2) 59 [] -ServesMeatDishes(Neals).
+
+given clause #20: (wt=2) 60 [] ServesVegetarianDishes(Neals).
+
+given clause #21: (wt=2) 61 [] -ExpensiveFood(Neals).
+
+given clause #22: (wt=2) 62 [] WithFamily(Richard).
+
+given clause #23: (wt=2) 63 [] Tourist(Richard).
+
+given clause #24: (wt=2) 64 [] LikesStayOutLate(z)| -$ans(z).
+
+given clause #25: (wt=3) 21 [] LivesAt(Queen,BuckinghamPalace).
+
+given clause #26: (wt=3) 27 [] SatisfiesInterest(StPaulsCathedral,Arch).
+
+given clause #27: (wt=4) 1 [] Younger(x)|Older(x).
+
+given clause #28: (wt=4) 3 [] WithFamily(x)| -WithSpouse(x).
+
+given clause #29: (wt=4) 4 [] WithFamily(x)| -WithChildren(x).
+
+given clause #30: (wt=4) 5 [] -Alone(x)| -WithFamily(x).
+
+given clause #31: (wt=2) 65 [binary,5.2,62.1] -Alone(Richard).
+
+given clause #32: (wt=4) 6 [] Alone(x)|WithFamily(x).
+
+given clause #33: (wt=4) 7 [] -Married(x)|Older(x).
+
+given clause #34: (wt=4) 8 [] -WithSpouse(x)|Married(x).
+
+given clause #35: (wt=4) 9 [] -WithChildren(x)|Married(x).
+
+given clause #36: (wt=4) 10 [] -Younger(x)|Poor(x).
+
+given clause #37: (wt=4) 11 [] -Younger(x)|CanStayOutLate(x).
+
+given clause #38: (wt=4) 12 [] -Older(x)| -LikesStayOutLate(x).
+
+given clause #39: (wt=2) 72 [binary,12.1,7.2,unit_del,64] -Married(x)| -$ans(x).
+
+given clause #40: (wt=2) 73 [binary,12.1,1.2,unit_del,64] Younger(x)| -$ans(x).
+
+given clause #41: (wt=2) 74 [binary,12.2,64.1] -Older(x)| -$ans(x).
+
+given clause #42: (wt=2) 75 [binary,72.1,9.2] -$ans(x)| -WithChildren(x).
+
+given clause #43: (wt=2) 76 [binary,72.1,8.2] -$ans(x)| -WithSpouse(x).
+
+given clause #44: (wt=2) 77 [binary,73.1,11.1] -$ans(x)|CanStayOutLate(x).
+
+given clause #45: (wt=2) 78 [binary,73.1,10.1] -$ans(x)|Poor(x).
+
+given clause #46: (wt=4) 14 [] -HatesChildren(y)| -LikesCrowds(y).
+
+given clause #47: (wt=4) 16 [] -PopularSight(z)|Sight(z).
+
+given clause #48: (wt=2) 79 [binary,16.1,18.1] Sight(TowerOfLondon).
+
+given clause #49: (wt=2) 80 [binary,16.1,17.1] Sight(BigBen).
+
+given clause #50: (wt=4) 19 [] -BuriedAtWest(x)|ImportantPerson(x).
+
+given clause #51: (wt=4) 23 [] -HasImportantPeople(x)|PopularSight(x).
+
+given clause #52: (wt=4) 24 [] -PopularSight(x)|Expensive(x).
+
+given clause #53: (wt=2) 83 [binary,24.1,18.1] Expensive(TowerOfLondon).
+
+given clause #54: (wt=2) 84 [binary,24.1,17.1] Expensive(BigBen).
+
+given clause #55: (wt=4) 25 [] -PopularSight(x)|KeepsRegHours(x).
+
+given clause #56: (wt=2) 86 [binary,25.1,18.1] KeepsRegHours(TowerOfLondon).
+
+given clause #57: (wt=2) 87 [binary,25.1,17.1] KeepsRegHours(BigBen).
+
+given clause #58: (wt=4) 30 [] -InterestingSight(x)| -PopularSight(x).
+
+given clause #59: (wt=2) 88 [binary,30.1,33.1] -PopularSight(SpeakersCornerKG).
+
+given clause #60: (wt=2) 89 [binary,30.1,26.1] -PopularSight(StPaulsCathedral).
+
+given clause #61: (wt=2) 91 [binary,30.2,18.1] -InterestingSight(TowerOfLondon).
+
+given clause #62: (wt=2) 92 [binary,30.2,17.1] -InterestingSight(BigBen).
+
+given clause #63: (wt=2) 93 [binary,88.1,23.2] -HasImportantPeople(SpeakersCornerKG).
+
+given clause #64: (wt=2) 94 [binary,89.1,23.2] -HasImportantPeople(StPaulsCathedral).
+
+given clause #65: (wt=4) 31 [] -InterestingSight(x)| -Expensive(x).
+
+given clause #66: (wt=2) 95 [binary,31.1,33.1] -Expensive(SpeakersCornerKG).
+
+given clause #67: (wt=2) 96 [binary,31.1,26.1] -Expensive(StPaulsCathedral).
+
+given clause #68: (wt=4) 32 [] -InterestingSight(x)|Sight(x).
+
+given clause #69: (wt=2) 97 [binary,32.1,33.1] Sight(SpeakersCornerKG).
+
+given clause #70: (wt=2) 98 [binary,32.1,26.1] Sight(StPaulsCathedral).
+
+given clause #71: (wt=4) 36 [] WillingToShop(x)|EatAtRestaurant(x).
+
+given clause #72: (wt=4) 37 [] WillingToShop(x)|EatAtRestaurant(x).
+
+given clause #73: (wt=4) 43 [] -Tourist(x)|VisitExpensive(x).
+
+given clause #74: (wt=2) 99 [binary,43.1,63.1] VisitExpensive(Richard).
+
+given clause #75: (wt=4) 81 [binary,23.2,16.1] -HasImportantPeople(x)|Sight(x).
+
+given clause #76: (wt=4) 82 [binary,24.1,23.2] Expensive(x)| -HasImportantPeople(x).
+
+given clause #77: (wt=4) 85 [binary,25.1,23.2] KeepsRegHours(x)| -HasImportantPeople(x).
+
+given clause #78: (wt=4) 90 [binary,30.2,23.2] -InterestingSight(x)| -HasImportantPeople(x).
+
+given clause #79: (wt=5) 41 [] -EatsWhatever(x)|DietMet(x,y).
+
+given clause #80: (wt=6) 2 [] -WithFamily(x)|WithSpouse(x)|WithChildren(x).
+
+-----> EMPTY CLAUSE at   0.01 sec ----> 100 [binary,2.1,62.1,unit_del,76,75,factor_simp] -$ans(Richard).
+
+Length of proof is 3.  Level of proof is 2.
+
+---------------- PROOF ----------------
+
+2 [] -WithFamily(x)|WithSpouse(x)|WithChildren(x).
+7 [] -Married(x)|Older(x).
+8 [] -WithSpouse(x)|Married(x).
+9 [] -WithChildren(x)|Married(x).
+12 [] -Older(x)| -LikesStayOutLate(x).
+62 [] WithFamily(Richard).
+64 [] LikesStayOutLate(z)| -$ans(z).
+72 [binary,12.1,7.2,unit_del,64] -Married(x)| -$ans(x).
+75 [binary,72.1,9.2] -$ans(x)| -WithChildren(x).
+76 [binary,72.1,8.2] -$ans(x)| -WithSpouse(x).
+100 [binary,2.1,62.1,unit_del,76,75,factor_simp] -$ans(Richard).
+
+------------ end of proof -------------
+
+
+Search stopped by max_proofs option.
+
+============ end of search ============
+
+-------------- statistics -------------
+clauses given                 80
+clauses generated             49
+  binary_res generated        49
+  factors generated            0
+demod & eval rewrites          0
+clauses wt,lit,sk delete       0
+tautologies deleted            2
+clauses forward subsumed      11
+  (subsumed by sos)            1
+unit deletions                 4
+factor simplifications         1
+clauses kept                  35
+new demodulators               0
+empty clauses                  1
+clauses back demodulated       0
+clauses back subsumed         16
+usable size                    0
+sos size                       0
+demodulators size              0
+passive size                   0
+hot size                       0
+Kbytes malloced              127
+
+----------- times (seconds) -----------
+user CPU time          0.01          (0 hr, 0 min, 0 sec)
+system CPU time        0.00          (0 hr, 0 min, 0 sec)
+wall-clock time        0             (0 hr, 0 min, 0 sec)
+input time             0.00
+  clausify time        0.00
+binary_res time        0.00
+pre_process time       0.00
+  renumber time        0.00
+  demod time           0.00
+  order equalities     0.00
+  unit deleletion      0.00
+  factor simplify      0.00
+  weigh cl time        0.00
+  hints keep time      0.00
+  sort lits time       0.00
+  forward subsume      0.00
+  delete cl time       0.00
+  keep cl time         0.00
+    hints time         0.00
+  print_cl time        0.00
+  conflict time        0.00
+  new demod time       0.00
+post_process time      0.00
+  back demod time      0.00
+  back subsume         0.00
+  factor time          0.00
+  unindex time         0.00
+
+The job finished        Thu Apr 25 20:46:22 2019

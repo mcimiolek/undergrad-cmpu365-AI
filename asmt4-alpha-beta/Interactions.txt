@@ -1,0 +1,687 @@
+[27c] CL-USER(233): (do-all-tests)
+
+
+====================================
+  CMPU-365, Spring 2019
+  Asmt. 4
+  Matthew Imiolek
+====================================
+
+-------------------------
+ PROBLEM TEST-ONE:  White should find an easy checkmate
+-------------------------
+
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - n b q k b n r 
+6:  - p p p p p p - 
+5:  r - - - - - - - 
+4:  p - - - - - - p 
+3:  - - B - P - - - 
+2:  - - - - - Q - - 
+1:  P P P P - P P P 
+0:  R N B - K - N R 
+  -------------------
+White live values: 104075, black live values: 104075, Current Val: 0
+White deadwood: NIL
+Black deadwood: NIL
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399997
+   NUM-MOVES-DONE: 1151981, NUM-MOVES-PRUNED: 4495500
+   My move: (2 5 6 5)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - n b q k b n r 
+6:  - p p p p Q p - 
+5:  r - - - - - - - 
+4:  p - - - - - - p 
+3:  - - B - P - - - 
+2:  - - - - - - - - 
+1:  P P P P - P P P 
+0:  R N B - K - N R 
+  -------------------
+White live values: 104075, black live values: 103975, Current Val: -100
+White deadwood: NIL
+Black deadwood: (p)
+It is black's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: -399998
+   NUM-MOVES-DONE: 598320, NUM-MOVES-PRUNED: 1664769
+   My move: (7 4 6 5)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - n b q - b n r 
+6:  - p p p p k p - 
+5:  r - - - - - - - 
+4:  p - - - - - - p 
+3:  - - B - P - - - 
+2:  - - - - - - - - 
+1:  P P P P - P P P 
+0:  R N B - K - N R 
+  -------------------
+White live values: 103100, black live values: 103975, Current Val: -875
+White deadwood: (Q)
+Black deadwood: (p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399999
+   NUM-MOVES-DONE: 301772, NUM-MOVES-PRUNED: 1262593
+   My move: (3 2 6 5)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - n b q - b n r 
+6:  - p p p p B p - 
+5:  r - - - - - - - 
+4:  p - - - - - - p 
+3:  - - - - P - - - 
+2:  - - - - - - - - 
+1:  P P P P - P P P 
+0:  R N B - K - N R 
+  -------------------
+White live values: 103100, black live values: 3975, Current Val: -99125
+White deadwood: (Q)
+Black deadwood: (k p)
+It is black's turn!
+
+White should have taken black's king by now!
+Game over? T
+
+
+-------------------------
+ PROBLEM TEST-TWO: White should be able to win the rook in two moves!
+-------------------------
+
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - b q - b n r 
+6:  p p p - k p p - 
+5:  n - - p - - - p 
+4:  - - - - p - N - 
+3:  - - B - P - - - 
+2:  - - - - - - - - 
+1:  P P P P - P P P 
+0:  R N B Q K - - R 
+  -------------------
+White live values: 104075, black live values: 104075, Current Val: 0
+White deadwood: NIL
+Black deadwood: NIL
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 450
+   NUM-MOVES-DONE: 8805753, NUM-MOVES-PRUNED: 17515569
+   My move: (4 6 6 5)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - b q - b n r 
+6:  p p p - k N p - 
+5:  n - - p - - - p 
+4:  - - - - p - - - 
+3:  - - B - P - - - 
+2:  - - - - - - - - 
+1:  P P P P - P P P 
+0:  R N B Q K - - R 
+  -------------------
+White live values: 104075, black live values: 103975, Current Val: -100
+White deadwood: NIL
+Black deadwood: (p)
+It is black's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: -650
+   NUM-MOVES-DONE: 5178830, NUM-MOVES-PRUNED: 7361973
+   My move: (7 3 7 4)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - b - q b n r 
+6:  p p p - k N p - 
+5:  n - - p - - - p 
+4:  - - - - p - - - 
+3:  - - B - P - - - 
+2:  - - - - - - - - 
+1:  P P P P - P P P 
+0:  R N B Q K - - R 
+  -------------------
+White live values: 104075, black live values: 103975, Current Val: 100
+White deadwood: NIL
+Black deadwood: (p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 500
+   NUM-MOVES-DONE: 4231121, NUM-MOVES-PRUNED: 20417269
+   My move: (6 5 7 7)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - b - q b n N 
+6:  p p p - k - p - 
+5:  n - - p - - - p 
+4:  - - - - p - - - 
+3:  - - B - P - - - 
+2:  - - - - - - - - 
+1:  P P P P - P P P 
+0:  R N B Q K - - R 
+  -------------------
+White live values: 104075, black live values: 103475, Current Val: -600
+White deadwood: NIL
+Black deadwood: (r p)
+It is black's turn!
+
+White should have taken black's rook by now!
+
+
+-------------------------
+ PROBLEM TEST-THREE: Black should move the queen to avoid its capture
+-------------------------
+
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - b q - b n r 
+6:  p p p - k N p - 
+5:  n - - p - - - p 
+4:  - - - - p - - - 
+3:  - - B - P - - - 
+2:  - - - - - - - - 
+1:  P P P P - P P P 
+0:  R N B Q K - - R 
+  -------------------
+White live values: 104075, black live values: 103975, Current Val: -100
+White deadwood: NIL
+Black deadwood: (p)
+It is black's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+8391872 bytes have been tenured, next gc will be global.
+See the documentation for variable *GLOBAL-GC-BEHAVIOR* for more information.
+   ROOT NODE ALPHA: -650
+   NUM-MOVES-DONE: 5178830, NUM-MOVES-PRUNED: 7361973
+   My move: (7 3 7 4)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - b - q b n r 
+6:  p p p - k N p - 
+5:  n - - p - - - p 
+4:  - - - - p - - - 
+3:  - - B - P - - - 
+2:  - - - - - - - - 
+1:  P P P P - P P P 
+0:  R N B Q K - - R 
+  -------------------
+White live values: 104075, black live values: 103975, Current Val: 100
+White deadwood: NIL
+Black deadwood: (p)
+It is white's turn!
+
+Black should have moved its queen!
+
+
+-------------------------
+ PROBLEM MATE-IN-TWO
+-------------------------
+
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - - - - k b - r 
+6:  p - - n - p p p 
+5:  - - - - q - - - 
+4:  - - - - p - B - 
+3:  - - - - P - - - 
+2:  - Q - - - - - - 
+1:  P P P - - P P P 
+0:  - - K R - - - - 
+  -------------------
+White live values: 102525, black live values: 102625, Current Val: -100
+White deadwood: (R B N N P)
+Black deadwood: (r b n p p p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399995
+   NUM-MOVES-DONE: 2794784, NUM-MOVES-PRUNED: 14318419
+   My move: (2 1 7 1)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - Q - - k b - r 
+6:  p - - n - p p p 
+5:  - - - - q - - - 
+4:  - - - - p - B - 
+3:  - - - - P - - - 
+2:  - - - - - - - - 
+1:  P P P - - P P P 
+0:  - - K R - - - - 
+  -------------------
+White live values: 102525, black live values: 102625, Current Val: 100
+White deadwood: (R B N N P)
+Black deadwood: (r b n p p p)
+It is black's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: -399996
+   NUM-MOVES-DONE: 6783872, NUM-MOVES-PRUNED: 15709567
+   My move: (6 3 7 1)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - n - - k b - r 
+6:  p - - - - p p p 
+5:  - - - - q - - - 
+4:  - - - - p - B - 
+3:  - - - - P - - - 
+2:  - - - - - - - - 
+1:  P P P - - P P P 
+0:  - - K R - - - - 
+  -------------------
+White live values: 101550, black live values: 102625, Current Val: -1075
+White deadwood: (Q R B N N P)
+Black deadwood: (r b n p p p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399997
+   NUM-MOVES-DONE: 1453354, NUM-MOVES-PRUNED: 3896325
+   My move: (0 3 7 3)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - n - R k b - r 
+6:  p - - - - p p p 
+5:  - - - - q - - - 
+4:  - - - - p - B - 
+3:  - - - - P - - - 
+2:  - - - - - - - - 
+1:  P P P - - P P P 
+0:  - - K - - - - - 
+  -------------------
+White live values: 101550, black live values: 102625, Current Val: 1075
+White deadwood: (Q R B N N P)
+Black deadwood: (r b n p p p)
+It is black's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: -399998
+   NUM-MOVES-DONE: 1433239, NUM-MOVES-PRUNED: 3306835
+   My move: (7 4 7 3)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - n - k - b - r 
+6:  p - - - - p p p 
+5:  - - - - q - - - 
+4:  - - - - p - B - 
+3:  - - - - P - - - 
+2:  - - - - - - - - 
+1:  P P P - - P P P 
+0:  - - K - - - - - 
+  -------------------
+White live values: 101050, black live values: 102625, Current Val: -1575
+White deadwood: (Q R R B N N P)
+Black deadwood: (r b n p p p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399999
+   NUM-MOVES-DONE: 701028, NUM-MOVES-PRUNED: 932118
+   My move: (4 6 7 3)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - n - B - b - r 
+6:  p - - - - p p p 
+5:  - - - - q - - - 
+4:  - - - - p - - - 
+3:  - - - - P - - - 
+2:  - - - - - - - - 
+1:  P P P - - P P P 
+0:  - - K - - - - - 
+  -------------------
+White live values: 101050, black live values: 2625, Current Val: -98425
+White deadwood: (Q R R B N N P)
+Black deadwood: (k r b n p p p)
+It is black's turn!
+
+White should have taken black's king by now!
+Game over? T
+
+
+-------------------------
+ PROBLEM MATE-IN-THREE
+-------------------------
+
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - - - - - r k 
+6:  - - - - - p - p 
+5:  - - - - - R - - 
+4:  - - - - B - - - 
+3:  - - - - - - - - 
+2:  - - - - - - - - 
+1:  - - - - - - - P 
+0:  - - - - - - - K 
+  -------------------
+White live values: 100950, black live values: 101200, Current Val: -250
+White deadwood: (Q R B N N P P P P P P P)
+Black deadwood: (q b b n n p p p p p p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 350
+   NUM-MOVES-DONE: 580964, NUM-MOVES-PRUNED: 4536680
+   My move: (5 5 5 0)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - - - - - r k 
+6:  - - - - - p - p 
+5:  R - - - - - - - 
+4:  - - - - B - - - 
+3:  - - - - - - - - 
+2:  - - - - - - - - 
+1:  - - - - - - - P 
+0:  - - - - - - - K 
+  -------------------
+White live values: 100950, black live values: 101200, Current Val: 250
+White deadwood: (Q R B N N P P P P P P P)
+Black deadwood: (q b b n n p p p p p p)
+It is black's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: -399994
+   NUM-MOVES-DONE: 2891695, NUM-MOVES-PRUNED: 3407864
+   My move: (6 5 5 5)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - - - - - r k 
+6:  - - - - - - - p 
+5:  R - - - - p - - 
+4:  - - - - B - - - 
+3:  - - - - - - - - 
+2:  - - - - - - - - 
+1:  - - - - - - - P 
+0:  - - - - - - - K 
+  -------------------
+White live values: 100950, black live values: 101200, Current Val: -250
+White deadwood: (Q R B N N P P P P P P P)
+Black deadwood: (q b b n n p p p p p p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399995
+   NUM-MOVES-DONE: 443934, NUM-MOVES-PRUNED: 1371916
+   My move: (4 4 5 5)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - - - - - r k 
+6:  - - - - - - - p 
+5:  R - - - - B - - 
+4:  - - - - - - - - 
+3:  - - - - - - - - 
+2:  - - - - - - - - 
+1:  - - - - - - - P 
+0:  - - - - - - - K 
+  -------------------
+White live values: 100950, black live values: 101100, Current Val: 150
+White deadwood: (Q R B N N P P P P P P P)
+Black deadwood: (q b b n n p p p p p p p)
+It is black's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: -399996
+   NUM-MOVES-DONE: 1248612, NUM-MOVES-PRUNED: 1973419
+   My move: (7 6 6 6)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  r - - - - - - k 
+6:  - - - - - - r p 
+5:  R - - - - B - - 
+4:  - - - - - - - - 
+3:  - - - - - - - - 
+2:  - - - - - - - - 
+1:  - - - - - - - P 
+0:  - - - - - - - K 
+  -------------------
+White live values: 100950, black live values: 101100, Current Val: -150
+White deadwood: (Q R B N N P P P P P P P)
+Black deadwood: (q b b n n p p p p p p p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399997
+   NUM-MOVES-DONE: 391397, NUM-MOVES-PRUNED: 1064390
+   My move: (5 0 7 0)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  R - - - - - - k 
+6:  - - - - - - r p 
+5:  - - - - - B - - 
+4:  - - - - - - - - 
+3:  - - - - - - - - 
+2:  - - - - - - - - 
+1:  - - - - - - - P 
+0:  - - - - - - - K 
+  -------------------
+White live values: 100950, black live values: 100600, Current Val: -350
+White deadwood: (Q R B N N P P P P P P P)
+Black deadwood: (q r b b n n p p p p p p p)
+It is black's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: -399998
+   NUM-MOVES-DONE: 220700, NUM-MOVES-PRUNED: 251015
+   My move: (7 7 7 6)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  R - - - - - k - 
+6:  - - - - - - r p 
+5:  - - - - - B - - 
+4:  - - - - - - - - 
+3:  - - - - - - - - 
+2:  - - - - - - - - 
+1:  - - - - - - - P 
+0:  - - - - - - - K 
+  -------------------
+White live values: 100950, black live values: 100600, Current Val: 350
+White deadwood: (Q R B N N P P P P P P P)
+Black deadwood: (q r b b n n p p p p p p p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399999
+   NUM-MOVES-DONE: 85989, NUM-MOVES-PRUNED: 479998
+   My move: (7 0 7 6)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - - - - - - R - 
+6:  - - - - - - r p 
+5:  - - - - - B - - 
+4:  - - - - - - - - 
+3:  - - - - - - - - 
+2:  - - - - - - - - 
+1:  - - - - - - - P 
+0:  - - - - - - - K 
+  -------------------
+White live values: 100950, black live values: 600, Current Val: -100350
+White deadwood: (Q R B N N P P P P P P P)
+Black deadwood: (k q r b b n n p p p p p p p)
+It is black's turn!
+
+White should have taken black's king by now!
+Game over? T
+-------------------------
+ PROBLEM MY-MATE-IN-TWO
+-------------------------
+
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - - - - - - - - 
+6:  - - - K - - - - 
+5:  - - R - P - - - 
+4:  - P - k r - - - 
+3:  - - - N p b - - 
+2:  - - - - P - - - 
+1:  - - - - - - - - 
+0:  - - - - - N - - 
+  -------------------
+White live values: 101400, black live values: 100950, Current Val: 450
+White deadwood: (Q R B B P P P P P)
+Black deadwood: (q r b n n p p p p p p p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399995
+   NUM-MOVES-DONE: 637902, NUM-MOVES-PRUNED: 3581581
+   My move: (3 3 2 1)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - - - - - - - - 
+6:  - - - K - - - - 
+5:  - - R - P - - - 
+4:  - P - k r - - - 
+3:  - - - - p b - - 
+2:  - N - - P - - - 
+1:  - - - - - - - - 
+0:  - - - - - N - - 
+  -------------------
+White live values: 101400, black live values: 100950, Current Val: -450
+White deadwood: (Q R B B P P P P P)
+Black deadwood: (q r b n n p p p p p p p)
+It is black's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: -399996
+   NUM-MOVES-DONE: 2942304, NUM-MOVES-PRUNED: 2186088
+   My move: (4 4 4 7)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - - - - - - - - 
+6:  - - - K - - - - 
+5:  - - R - P - - - 
+4:  - P - k - - - r 
+3:  - - - - p b - - 
+2:  - N - - P - - - 
+1:  - - - - - - - - 
+0:  - - - - - N - - 
+  -------------------
+White live values: 101400, black live values: 100950, Current Val: 450
+White deadwood: (Q R B B P P P P P)
+Black deadwood: (q r b n n p p p p p p p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399997
+   NUM-MOVES-DONE: 1999912, NUM-MOVES-PRUNED: 8539322
+   My move: (5 2 4 2)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - - - - - - - - 
+6:  - - - K - - - - 
+5:  - - - - P - - - 
+4:  - P R k - - - r 
+3:  - - - - p b - - 
+2:  - N - - P - - - 
+1:  - - - - - - - - 
+0:  - - - - - N - - 
+  -------------------
+White live values: 101400, black live values: 100950, Current Val: -450
+White deadwood: (Q R B B P P P P P)
+Black deadwood: (q r b n n p p p p p p p)
+It is black's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: -399998
+   NUM-MOVES-DONE: 1649360, NUM-MOVES-PRUNED: 1909424
+   My move: (4 3 5 2)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - - - - - - - - 
+6:  - - - K - - - - 
+5:  - - k - P - - - 
+4:  - P R - - - - r 
+3:  - - - - p b - - 
+2:  - N - - P - - - 
+1:  - - - - - - - - 
+0:  - - - - - N - - 
+  -------------------
+White live values: 101400, black live values: 100950, Current Val: 450
+White deadwood: (Q R B B P P P P P)
+Black deadwood: (q r b n n p p p p p p p)
+It is white's turn!
+
+
+COMPUTE-MOVE (cutoff=6)
+   ROOT NODE ALPHA: 399999
+   NUM-MOVES-DONE: 253407, NUM-MOVES-PRUNED: 941322
+   My move: (6 3 5 2)
+
+    0 1 2 3 4 5 6 7
+  -------------------
+7:  - - - - - - - - 
+6:  - - - - - - - - 
+5:  - - K - P - - - 
+4:  - P R - - - - r 
+3:  - - - - p b - - 
+2:  - N - - P - - - 
+1:  - - - - - - - - 
+0:  - - - - - N - - 
+  -------------------
+White live values: 101400, black live values: 950, Current Val: -100450
+White deadwood: (Q R B B P P P P P)
+Black deadwood: (k q r b n n p p p p p p p)
+It is black's turn!
+
+White should have taken black's king by now!
+Game over? T
+
+
+NIL
+[27c] CL-USER(234): 

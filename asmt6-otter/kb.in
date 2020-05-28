@@ -1,0 +1,336 @@
+%%% ==========================================
+%%%   Filename:  kb.in
+%%%   CS365:     Assignment #6 (Extra Credit)
+%%%   Author:    Matthew Imiolek, Amy O'Connell
+%%%   Date:      {current 2019}
+%%% ==========================================
+
+%% Set up OTTER.
+
+%% You may modify max_seconds and/or max_mem while testing
+
+set(binary_res).
+clear(print_kept).
+clear(print_back_sub).
+assign(max_mem, 2048).
+assign(max_seconds, 60).
+set(free_all_mem).
+
+formula_list(sos).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Write formulas for the facts that are not already encoded
+%%  for you below!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1.  All tourists are either younger or older, and are either
+% traveling alone or with family (spouse and/or children).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Younger(x)      ==  x is younger.
+%   Older(x)        == x is older.
+%		Alone(x)				== x is not traveling with their family
+%   WithFamily(x)		== x is traveling with their spouse and/or kids
+%   WithSpouse(x)   == x is traveling with his/her spouse.
+%   WithChildren(x) == x is traveling with his/her children.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x (Younger(x)|Older(x)).
+all x (WithFamily(x) <-> (WithSpouse(x) & WithChildren(x))
+    |WithSpouse(x) | WithChildren(x)).
+all x (Alone(x) <-> -WithFamily(x)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2.  Tourists who are married are older.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   We'll assume that only married people have children.
+%
+%   Married(x)      == x is married.
+%   Older(x)        == x is older.
+%   WithSpouse(x)   == x is traveling with his/her spouse.
+%   WithChildren(x) == x is traveling with his/her children.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x (Married(x) -> Older(x)).
+all x (WithSpouse(x) -> Married(x)).
+all x (WithChildren(x) -> Married(x)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3.  Younger tourists have little money,
+% but can stay out late and do zany things.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Younger(x)        == x is younger.
+%   Poor(x)           == x has little money.
+%   CanStayOutLate(x) == x can stay out late.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x (Younger(x) -> Poor(x)).
+all x (Younger(x) -> CanStayOutLate(x)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 4.  Older tourists go to sleep at a normal time.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  LikesStayOutLate(x)  == x likes to stay out late.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x (Older(x) -> -LikesStayOutLate(x)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  5.  Unless you know otherwise, assume a tourist has lots of money.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Poor(x) == x has little money
+% Rich(x) == x has lots of money
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x (-Poor(x) -> Rich(x)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  6.  Tourists in London all go to see the popular sights.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    This is open to interpretation.  It surely doesn't mean that
+%    each tourist in London goes to see each and every popular sight.
+%    That would be impossible.  For this kb, we'll use the following
+%    scheme:  if a sight is popular, then a tourist would like to
+%    see it.  If no other restrictions apply (see later facts), then
+%    this desire to see a popular sight ("would like to see") will
+%    be upgraded to "should see".
+%
+%       PopularSight(y)    ==   y is a popular tourist sight
+%       Sight(y)           ==   y is a sight (not nec. popular)
+%       CanVisit(x,y)      ==   x would like to visit the sight y
+%       AlreadySeen(x,y)   ==   x has already seen the sight y
+%       LikesCrowds(x)     ==   x likes seeing sights crowded with families
+%       InterestedIn(x,y)  ==   x has a special interest in y
+%       HatesChildren(x)   ==   x hates children
+%
+%    Note:  The "already seen" business is included to keep from
+%    recommending sights to tourists that they've already seen.
+%    However, this will require telling the kb what sights a
+%    tourist has or hasn't seen at query time.
+%    Also, if a tourist is tired of seeing
+%    crowded sights (i.e., popular sights) we don't want to recommend
+%    popular sights.  Finally, if a tourist has a special interest
+%    we don't want to send him/her to a popular sight, rather we want
+%    to send him/her to an interesting sight that satisfies the par-
+%    ticular interest.  <-- This is a big simplification.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% If you hate children, then you don't like crowds!
+
+all y (HatesChildren(y) -> -LikesCrowds(y)).
+
+all x y ((Tourist(x) & PopularSight(y) & -AlreadySeen(x,y)
+		& -SpecialInterests(x) & LikesCrowds(x)) -> CanVisit(x,y)).
+
+all z (PopularSight(z) -> Sight(z)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 7. Big Ben and the Tower of London are popular sights.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+PopularSight(BigBen).
+PopularSight(TowerOfLondon).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 8. Important people are buried at Westminster Abbey.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% We'll assume important people stay important when dead
+%
+% ImportantPerson(x)   == x is an important person (dead or alive!)
+% BuriedAtWest(x)      == x is buried at Westminster Abbey
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x (BuriedAtWest(x) -> ImportantPerson(x)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 9. The Queen (an important person) often lives at Buckingham
+%	Palace.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	      ImportantPerson(x)    ==  x is an important person (dead or alive!)
+%       LivesAt(x,y)          ==  person x lives at place y
+%       HasImportantPeople(y) ==  there are important people at place y
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ImportantPerson(Queen).
+LivesAt(Queen, BuckinghamPalace).
+all x y ((LivesAt(x,y) & ImportantPerson(x)) -> HasImportantPeople(y)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 10. Places with important people are popular sights.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   HasImportantPeople(x)  ==  there are important people at place x
+%   PopularSight(x)        ==  x is a popular sight
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x ((HasImportantPeople(x)) -> (PopularSight(x))).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 11.  Popular sights are expensive and keep regular hours.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Expensive(x)     ==  x is an expensive place to visit/eat at.
+%     -Expensive(x)    ==  x is an affordable place to visit/eat at.
+%     KeepsRegHours(x) ==  the place x keeps regular hours.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x (PopularSight(x) -> (Expensive(x) & KeepsRegHours(x))).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 12.  Tourists interested in architecture must see St. Paul's
+%	cathedral, which is an interesting place.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  InterestedIn(x,y)      == x has a special interest in y.
+%  InterestingSight(x)    == x is an interesting tourist sight.
+%  SatisfiesInterest(x,y) == x satisfies an interest in y.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Assumption:  Since there are only "popular" and "interesting"
+%    sights mentioned in the facts, we'll assume that interesting
+%    sights are not popular.  Further, since popular sights are
+%    all expensive, we'll assume that interesting sights are affordable.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+InterestingSight(StPaulsCathedral).
+SatisfiesInterest(StPaulsCathedral,Arch).
+
+all x y ((Tourist(x) & -LikesCrowds(x) & -PopularSight(y) & Sight(y))
+			-> CanVisit(x,y)).
+
+all x y z ((Tourist(x) & InterestedIn(x,y) & SatisfiesInterest(z,y)
+			& Sight(z)) -> CanVisit(x,z)).
+
+all x (InterestingSight(x) -> -PopularSight(x)).
+all x (InterestingSight(x) -> -Expensive(x)).
+all x (InterestingSight(x) -> Sight(x)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 13.  Speaker's Corner in Kensington Gardens is also interesting.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+InterestingSight(SpeakersCornerKG).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   14. Tourists with children should see the Peter Pan statue at
+%       Kensington Gardens.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  GoodForChildren(x) == x is a good place for children.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+GoodForChildren(KensingtonGardens).
+
+all x y ((GoodForChildren(x) & HatesChildren(y)) -> -CanVisit(y,x)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   15. Unless they are willing to buy food at a store and pack their lunch,
+%       tourists must eat at some restaurant in London. In any event they
+%       can’t go without food.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  WillingToShop(x)   == x is willing to buy and make their own food.
+%  EatAtRestaurant(x) == x will eat at a restaurant.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x (-WillingToShop(x) -> EatAtRestaurant(x)).
+all x (WillingToShop(x) | EatAtRestaurant(x)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   16. Some tourists don’t eat red meat; still other tourists insist
+%       on having red meat at every meal. In general, many tourists don’t
+%       care what they eat.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  NoRedMeat(x)      == x doesn't eat red meat.
+%  MustEatRedMeat(x) == x must have red meat at every meal.
+%  EatsWhatever(x)   == x doesn't care what they eat.
+%  DietMet(x,y)      == x has their diet met at y
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x (NoRedMeat(x)|MustEatRedMeat(x)|EatsWhatever(x)).
+
+all x y (MustEatRedMeat(x) & ServesMeatDishes(y) -> DietMet(x,y)).
+all x y (NoRedMeat(x) & ServesVegetarianDishes(y) -> DietMet(x,y)).
+all x y (EatsWhatever(x) -> DietMet(x,y)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   17. Tourists on a tight budget must cut out something; they cannot both
+%       visit expensive popular sights and spend lots of money on food.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Assumption: We assume that a tourist wants to visit the sights more than eat
+%
+% Poor(x)           -> x has little money
+% Tourist(x)        -> x is a tourist
+% ExpensiveFood(y)  -> y is an expensive restaurant
+% VisitExpensive(x) -> x visits expensive places
+% EatExpensive(x)   -> x eats at expensive places
+% EatAt(x,y)        -> x can eat at y
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+all x (Poor(x) -> EatExpensive(x) | VisitExpensive(x)).
+all x (Tourist(x) -> VisitExpensive(x)).
+all x y (DietMet(x,y) & -ExpensiveFood(y) -> EatAt(x,y)).
+all x y (DietMet(x,y) & ExpensiveFood(y) & EatExpensive(x) -> EatAt(x,y)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   18. Porter’s serves only meat dishes, is very expensive, and closes
+%       promptly at 8 P.M. The Place Below serves only vegetarian dishes
+%       and is very expensive.  Geale’s serves fish and chicken and is quite
+%       affordable–furthermore, it is always open.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  ServesMeatDishes(x)       == x serves meat dishes.
+%  ServesVegetarianDishes(x) == x serves vegetarian dishes.
+%  ExpensiveFood(x)          == x sells expensive food.
+%  KeepsRegHours(x)          == x keeps regular hours
+%  AlwaysOpen(x)             == x is always open
+%  OutLate(x)                == x is out late (after regular hours).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Assumption: fish is a meat dish.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ServesMeatDishes(Porters).
+-ServesVegetarianDishes(Porters).
+ExpensiveFood(Porters).
+
+ServesVegetarianDishes(ThePlaceBelow).
+-ServesMeatDishes(ThePlaceBelow).
+ExpensiveFood(ThePlaceBelow).
+
+ServesMeatDishes(Geales).
+-ExpensiveFood(Geales).
+-KeepsRegHours(Geales).
+
+all x (-KeepsRegHours(x) -> AlwaysOpen(x)).
+
+all x y (DietMet(x,y) & OutLate(x) & AlwaysOpen(y) -> EatAt(x,y)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   19. Tourists may buy expensive meats and cheeses at Harrods, or they may
+%       buy inexpensive vegetables and breads at Neal’s Yard Bakery.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Assumption: Can buy just cheese at Harrods
+%
+%  ExpensiveFood(x)          -> x has expensive food
+%  CheapFood(x)              -> x has cheap food
+%  ExpensiveEater(x)         -> x spent a lot of money on food
+%  ServesMeatDishes(x)       -> x serves meat dishes
+%  ServesVegetarianDishes(x) -> x serves vegetarian dishes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ServesMeatDishes(Harrods).
+ServesVegetarianDishes(Harrods).
+ExpensiveFood(Harrods).
+
+-ServesMeatDishes(Neals).
+ServesVegetarianDishes(Neals).
+-ExpensiveFood(Neals).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  NOTE:  Do NOT put an "end_of_list" or "query" in this file
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

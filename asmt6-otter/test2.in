@@ -1,0 +1,54 @@
+%%% ==========================================
+%%%  FILE:    test.in
+%%%  CS365:   Assignment #4
+%%% ==========================================
+%%%  To run:  ~cs365/bin/otter < test.in > test.out
+%%%
+%%%  Be sure to look at "test.out" to see how OTTER "clausified"
+%%%  the input formulae.
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Note:   This file is a stand-alone input file for otter.
+%         It is _NOT_ intended to be used with the Makefile for Asst 4.
+%       
+%   That's why this file includes the NEGATED query 
+%			-(exists z (Cool(z) & $ans(z)))
+%   and the "end_of_list" statement.
+%
+%   In asst 4, you will type your knowledge base axioms in "kb.in"
+%   (WITHOUT a query and WITHOUT an end_of_list).  You will type
+%   separate queries (with "end_of_lists") in each of the query.in files.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+set(binary_res).
+clear(print_kept).
+clear(print_back_sub).
+assign(max_mem, 2048).
+assign(max_seconds, 60).   % <---- Feel free to change this while testing
+set(free_all_mem).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  The list of formulas
+
+formula_list(sos).
+
+all x (Red(x) -> Bright(x)).
+exists y Red(y).
+all z ((Heavy(z) & Bright(z)) -> Cool(z)).
+Heavy(Block1).
+Blue(Block1).
+Heavy(Block2).
+Red(Block2).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   The query:  Does there exist a "cool" thing?  
+%%   Note use of $ans(z) <----- This tells OTTER what to call the ANSWER
+%%   Note that the query is stated as a NEGATED goal.
+
+-(exists z (Cool(z) & $ans(z))).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  End of Formula List
+
+end_of_list.

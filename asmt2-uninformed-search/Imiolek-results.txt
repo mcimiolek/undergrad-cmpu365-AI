@@ -1,0 +1,591 @@
+[16] CL-USER(156): (load "testing.lisp")
+;       Loading /home/mcimiolek/Desktop/Imiolek-asmt2-uninformed-search/testing.lisp
+
+
+====================================
+  CMPU-365, Spring 2019
+  Asmt. 2
+  Matthew Imiolek
+====================================
+
+(MAKER *MY-FILES*) ===> 
+(T T T T T)
+
+
+-------------------------
+ PROBLEM Vacuum World Testing
+-------------------------
+
+(DO-VW-DEPTH) ===> 
+Hey!  We found a goal node!!
+
+Generated 47 nodes in 0.0 seconds (0.0 sec/node)
+SUCCESS!!!
+
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 1), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 2), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 3), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (1 3), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 2), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 1), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 0), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (2 0), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 1), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 2), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (3 3), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 2), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((0 0) (0 3) (1 2) (3 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 0), Dirt-Locs: ((0 0) (0 3) (1 2) (3 3))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (2 0), Dirt-Locs: ((0 0) (0 3) (1 2) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 1), Dirt-Locs: ((0 0) (0 3) (1 2) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 2), Dirt-Locs: ((0 0) (0 3) (1 2) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((0 0) (0 3) (1 2) (3 3))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (3 3), Dirt-Locs: ((0 0) (0 3) (1 2) (3 3))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (3 3), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 2), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 0), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (2 0), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 1), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 2), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (1 3), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 2), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 1), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 0), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 1), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 2), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 3), Dirt-Locs: ((0 0) (0 3) (1 2))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (0 3), Dirt-Locs: ((0 0) (1 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (0 2), Dirt-Locs: ((0 0) (1 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (0 1), Dirt-Locs: ((0 0) (1 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: ((0 0) (1 2))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (1 0), Dirt-Locs: ((0 0) (1 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (1 1), Dirt-Locs: ((0 0) (1 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (1 2), Dirt-Locs: ((0 0) (1 2))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (1 2), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 1), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 0), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (2 0), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 1), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 2), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (1 3), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (0 3), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (0 2), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (0 1), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: NIL
+
+)
+==============================================
+*** END SOLUTION PATH (length: 57) ***
+==============================================
+Overall Node Count: 47
+
+
+
+(DO-VW-BREADTH) ===> 
+10957632 bytes have been tenured, next gc will be global.
+See the documentation for variable *GLOBAL-GC-BEHAVIOR* for more information.
+Hey!  We found a goal node!!
+
+Generated 246480 nodes in 410.58 seconds (0.001665774 sec/node)
+SUCCESS!!!
+
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: ((0 0) (0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: ((0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 1), Dirt-Locs: ((0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 2), Dirt-Locs: ((0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 3), Dirt-Locs: ((0 3) (1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (0 3), Dirt-Locs: ((1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (0 2), Dirt-Locs: ((1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (1 2), Dirt-Locs: ((1 2) (3 1) (3 3))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (1 2), Dirt-Locs: ((3 1) (3 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 1), Dirt-Locs: ((3 1) (3 3))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (2 1), Dirt-Locs: ((3 1) (3 3))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((3 1) (3 3))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (3 2), Dirt-Locs: ((3 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (3 3), Dirt-Locs: ((3 3))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (3 3), Dirt-Locs: NIL
+
+)
+==============================================
+*** END SOLUTION PATH (length: 15) ***
+==============================================
+Overall Node Count: 246480
+
+
+
+(DO-VW-DEPTH2) ===> 
+Hey!  We found a goal node!!
+
+Generated 51 nodes in 0.0 seconds (0.0 sec/node)
+SUCCESS!!!
+
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: Rob-Loc: (2 2), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (2 1), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (2 0), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (3 0), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (3 2), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (3 3), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (1 3), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 2), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 1), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 0), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 1), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 2), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (0 3), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (1 3), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 2), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 1), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 0), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (2 0), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 1), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 2), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (3 3), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 2), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((1 0) (2 3) (3 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 0), Dirt-Locs: ((1 0) (2 3) (3 2))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (2 0), Dirt-Locs: ((1 0) (2 3) (3 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 1), Dirt-Locs: ((1 0) (2 3) (3 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 2), Dirt-Locs: ((1 0) (2 3) (3 2))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((1 0) (2 3) (3 2))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (3 3), Dirt-Locs: ((1 0) (2 3) (3 2))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 2), Dirt-Locs: ((1 0) (2 3) (3 2))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (3 2), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 0), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (2 0), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 1), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 2), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (1 3), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 2), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 1), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (1 0), Dirt-Locs: ((1 0) (2 3))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (1 0), Dirt-Locs: ((2 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (1 1), Dirt-Locs: ((2 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (1 2), Dirt-Locs: ((2 3))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (1 3), Dirt-Locs: ((2 3))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((2 3))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: NIL
+
+)
+==============================================
+*** END SOLUTION PATH (length: 52) ***
+==============================================
+Overall Node Count: 51
+
+
+
+(DO-VW-BREADTH2) ===> 
+Hey!  We found a goal node!!
+
+Generated 77152 nodes in 69.18 seconds (8.966715e-4 sec/node)
+SUCCESS!!!
+
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: Rob-Loc: (2 2), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function SOUTH>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((0 0) (1 0) (2 3) (3 2) (3 1))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (2 3), Dirt-Locs: ((0 0) (1 0) (3 2) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (2 2), Dirt-Locs: ((0 0) (1 0) (3 2) (3 1))
+
+ NODE:  (action = #<Function EAST>)
+         STATE: Rob-Loc: (3 2), Dirt-Locs: ((0 0) (1 0) (3 2) (3 1))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (3 2), Dirt-Locs: ((0 0) (1 0) (3 1))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((0 0) (1 0) (3 1))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (3 1), Dirt-Locs: ((0 0) (1 0))
+
+ NODE:  (action = #<Function NORTH>)
+         STATE: Rob-Loc: (3 0), Dirt-Locs: ((0 0) (1 0))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (2 0), Dirt-Locs: ((0 0) (1 0))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (1 0), Dirt-Locs: ((0 0) (1 0))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (1 0), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function WEST>)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: ((0 0))
+
+ NODE:  (action = #<Function VACUUM>)
+         STATE: Rob-Loc: (0 0), Dirt-Locs: NIL
+
+)
+==============================================
+*** END SOLUTION PATH (length: 13) ***
+==============================================
+Overall Node Count: 77152
+
+
+-------------------------
+ PROBLEM Missionaries and Cannibals Testing
+-------------------------
+
+(DO-MC-DEPTH) ===> 
+Hey!  We found a goal node!!
+
+Generated 5 nodes in 0.0 seconds (0.0 sec/node)
+SUCCESS!!!
+
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: Cannibals Near: 3, Cannibals Far: 0, Missionaries Near: 3, Missionaries Far: 0, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-2-0>)
+         STATE: Cannibals Near: 1, Cannibals Far: 2, Missionaries Near: 3, Missionaries Far: 0, Boat on far bank.
+ NODE:  (action = #<Function MOVE-NEAR-1-0>)
+         STATE: Cannibals Near: 2, Cannibals Far: 1, Missionaries Near: 3, Missionaries Far: 0, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-2-0>)
+         STATE: Cannibals Near: 0, Cannibals Far: 3, Missionaries Near: 3, Missionaries Far: 0, Boat on far bank.
+ NODE:  (action = #<Function MOVE-NEAR-1-0>)
+         STATE: Cannibals Near: 1, Cannibals Far: 2, Missionaries Near: 3, Missionaries Far: 0, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-0-2>)
+         STATE: Cannibals Near: 1, Cannibals Far: 2, Missionaries Near: 1, Missionaries Far: 2, Boat on far bank.
+ NODE:  (action = #<Function MOVE-NEAR-1-1>)
+         STATE: Cannibals Near: 2, Cannibals Far: 1, Missionaries Near: 2, Missionaries Far: 1, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-0-2>)
+         STATE: Cannibals Near: 2, Cannibals Far: 1, Missionaries Near: 0, Missionaries Far: 3, Boat on far bank.
+ NODE:  (action = #<Function MOVE-NEAR-1-0>)
+         STATE: Cannibals Near: 3, Cannibals Far: 0, Missionaries Near: 0, Missionaries Far: 3, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-2-0>)
+         STATE: Cannibals Near: 1, Cannibals Far: 2, Missionaries Near: 0, Missionaries Far: 3, Boat on far bank.
+ NODE:  (action = #<Function MOVE-NEAR-1-0>)
+         STATE: Cannibals Near: 2, Cannibals Far: 1, Missionaries Near: 0, Missionaries Far: 3, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-2-0>)
+         STATE: Cannibals Near: 0, Cannibals Far: 3, Missionaries Near: 0, Missionaries Far: 3, Boat on far bank.
+)
+==============================================
+*** END SOLUTION PATH (length: 11) ***
+==============================================
+Overall Node Count: 5
+
+
+
+(DO-MC-BREADTH) ===> 
+Hey!  We found a goal node!!
+
+Generated 4 nodes in 0.0 seconds (0.0 sec/node)
+SUCCESS!!!
+
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: Cannibals Near: 3, Cannibals Far: 0, Missionaries Near: 3, Missionaries Far: 0, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-2-0>)
+         STATE: Cannibals Near: 1, Cannibals Far: 2, Missionaries Near: 3, Missionaries Far: 0, Boat on far bank.
+ NODE:  (action = #<Function MOVE-NEAR-1-0>)
+         STATE: Cannibals Near: 2, Cannibals Far: 1, Missionaries Near: 3, Missionaries Far: 0, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-2-0>)
+         STATE: Cannibals Near: 0, Cannibals Far: 3, Missionaries Near: 3, Missionaries Far: 0, Boat on far bank.
+ NODE:  (action = #<Function MOVE-NEAR-1-0>)
+         STATE: Cannibals Near: 1, Cannibals Far: 2, Missionaries Near: 3, Missionaries Far: 0, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-0-2>)
+         STATE: Cannibals Near: 1, Cannibals Far: 2, Missionaries Near: 1, Missionaries Far: 2, Boat on far bank.
+ NODE:  (action = #<Function MOVE-NEAR-1-1>)
+         STATE: Cannibals Near: 2, Cannibals Far: 1, Missionaries Near: 2, Missionaries Far: 1, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-0-2>)
+         STATE: Cannibals Near: 2, Cannibals Far: 1, Missionaries Near: 0, Missionaries Far: 3, Boat on far bank.
+ NODE:  (action = #<Function MOVE-NEAR-1-0>)
+         STATE: Cannibals Near: 3, Cannibals Far: 0, Missionaries Near: 0, Missionaries Far: 3, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-2-0>)
+         STATE: Cannibals Near: 1, Cannibals Far: 2, Missionaries Near: 0, Missionaries Far: 3, Boat on far bank.
+ NODE:  (action = #<Function MOVE-NEAR-1-0>)
+         STATE: Cannibals Near: 2, Cannibals Far: 1, Missionaries Near: 0, Missionaries Far: 3, Boat on near bank.
+ NODE:  (action = #<Function MOVE-FAR-2-0>)
+         STATE: Cannibals Near: 0, Cannibals Far: 3, Missionaries Near: 0, Missionaries Far: 3, Boat on far bank.
+)
+==============================================
+*** END SOLUTION PATH (length: 11) ***
+==============================================
+Overall Node Count: 4
+
+
+T
+[16] CL-USER(157): 

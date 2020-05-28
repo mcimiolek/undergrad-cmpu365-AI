@@ -1,0 +1,16 @@
+%%% ============================================================
+%%%   Filename:	 query7.in
+%%%   CS 365:    Asst. #6
+%%%   Author:    Amy O'Connell
+%%%   Date:      {4/24/19}
+%%% ============================================================
+
+% Richard is touring London with his family.
+% Does he like to stay out late?
+
+WithFamily(Richard).
+Tourist(Richard).
+
+-(exists z (-LikesStayOutLate(z) & $ans(z))).
+
+end_of_list.

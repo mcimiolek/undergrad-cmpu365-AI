@@ -1,0 +1,21 @@
+%%% ============================================================
+%%%   Filename:	 query3.in
+%%%   CS 365:    Asst. #6
+%%%   Author:    {Matthew Imiolek, Amy O'Connell}
+%%%   Date:      {4/23/19}
+%%% ============================================================
+%%% Robin is young, but already has a keen fascination with and
+%%% appreciation of architecture. Where should she go next?
+%%%
+%%% Based off of this we assumed Robin is Younger, is
+%%% InterestedIn Arch (short for architecture), and that the goal
+%%% is to see where Robin can visit. We also assume Robin is a
+%%% Tourist as otherwise she would probably not be looking for
+%%% somewhere to visit.
+
+Tourist(Robin).
+Younger(Robin).
+InterestedIn(Robin,Arch).
+-(exists z (CanVisit(Robin,z) & $ans(z))).
+
+end_of_list.

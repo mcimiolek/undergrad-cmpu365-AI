@@ -1,0 +1,625 @@
+CMPU-365, Spring 2019
+Asmt. 3
+
+     ---------------------------------------------------
+         Due:  Tuesday, Feb. 26 @ beginning of class
+     ---------------------------------------------------
+
+For this assignment you will implement both the Iterative Deepening
+Search (IDS) and A-star search algorithms.  In addition, you will
+implement the Manhattan-Distance heuristic for the Eight-Tile Puzzle
+domain.  (The basic implementation of the Eight-Tile Puzzle domain is
+given to you, as is a function implementing the Num-Tiles-Out
+heuristic.)  Then you will implement a couple of GOAL-TEST functions
+for the 2x2x2 Rubik's Cube domain.  (The basic implementation of the
+2x2x2 Rubik's Cube domain is given to you, as are a couple of sample
+GOAL-TEST functions.) Finally, you will test your IDS and A-star
+algorithms on a variety of problems in the Eight-Tile Puzzle and 2x2x2
+Rubik's Cube domains.
+
+    ===================================================================
+      For this assignment, you are STRONGLY ADVISED TO WORK IN PAIRS!
+      There are many tasks that can be done separately, and then
+      the results combined.
+    -------------------------------------------------------------------
+      Make sure that the names of both students are clearly marked
+      on the top page of your (single) submission.
+    ===================================================================
+
+
+NOTE:  To ensure that the compiler correctly deals with tail-recursive
+       functions calls, be sure to evaluate the following expressions
+       at the beginning of any Lisp session:
+
+          (setq compiler:tail-call-self-merge-switch t)
+          (setq compiler:tail-call-non-self-merge-switch t) 
+
+       Note that these expressions are automatically evaluated when
+       you load the "tests-etc.lisp" file.
+
+  ===> And be sure to define TAIL-RECURSIVE functions (or use iteration)
+       to avoid any memory issues.
+
+
+TO BEGIN: Login to your CS account and then CD to someplace where you
+  can store a copy of the asmt3 directory from the course web site.
+  Then execute the following command:
+
+     cp  -r  ~cs365/public_html/asmts/2019-asmt3-ids-astar/  myasmt3
+
+  This will copy the entire directory for asmt 3 into a new directory
+  called "myasmt3" in your account.  (Note:  Ignore the error message
+  about not having permission to see the "solns" directory!)
+
+  Next, CD into the newly created myasmt3 directory, fire up aclemacs,
+  and BEFORE YOU START WORKING read the important info given below!
+
+==================================================================
+             Stuff in the CS365 asmt3 directory
+==================================================================
+
+  FILES:  asmt-helper.lisp
+          basic-defns.lisp   
+          ids-starter.lisp 
+          a-star-starter.lisp
+          eights.lisp  
+	  heuristic-starter.lisp
+	  rubik.lisp
+          rubik-probs-starter.lisp
+          tests-etc.lisp 
+
+   You should NOT make any changes to any of the following files:
+
+          asmt-helper.lisp, basic-defns.lisp, eights.lisp, rubik.lisp
+
+   You SHOULD provide definitions for the functions in the following
+   files:
+
+          ids-starter.lisp, a-star-starter.lisp, 
+          heuristic-starter.lisp, rubik-probs-starter.lisp
+
+   You MAY add new tests to "tests-etc.lisp"
+
+-----------------------
+  basic-defns.lisp
+-----------------------
+
+  Includes stuff in basic-defns.lisp from asmt2 together with
+     SOLUTIONS for asmt 2, and a wrapper function called DLS (see
+     below).
+
+    structs:    SEARCH-PROBLEM, NODE, RESULTS 
+
+    functions:  PRINT-NODE, PRINT-RESULTS-STATS, PRINT-RESULTS,
+                BUILD-PATH, FRONT-ENQUEUE!, CYCLE?, MAKE-ROOT-NODE,
+                EXPAND, GEN-SEARCH-GUTS, GEN-SEARCH, DLS
+
+    constant:   *CUTOFF*
+
+    NOTES:  The DLS function is a "wrapper" function for DLS-GUTS.
+            You will define DLS-GUTS in "ids.lisp".
+ 
+            PRINT-RESULTS-STATS is a helper function for PRINT-RESULTS
+            that enables us to print info about the search without
+            displaying the sequence of MOVES/STATES constituting a
+            solution.  (We don't want the solution found by IDS to be
+            printed twice: once from IDS and once from DLS.)
+
+-----------------------
+  ids-starter.lisp
+-----------------------
+
+    Templates (and CONTRACTS) for the following functions:
+
+        DLS-GUTS and IDS  <--- to be defined by you!
+
+-----------------------
+  a-star.lisp
+-----------------------
+
+    Templates (and CONTRACTS) for the following functions:
+
+        MAKE-F-QUEUING-FUNC, A-STAR-SEARCH  <--- to be defined by you!
+
+-----------------------
+  eights.lisp
+-----------------------
+
+    Implementation of the eight-tile puzzle domain.  See especially
+    the NUM-TILES-HEURISTIC and MAKE-EIGHTS-PROBLEM functions.
+
+--------------------------
+  heuristic-starter.lisp
+--------------------------
+
+    Template (and CONTRACT) for the MANHATTAN-DISTANCE heuristic function
+    for the eight-tile puzzle domain.
+  
+-----------------------
+  rubik.lisp
+-----------------------
+
+    Implementation of the 2x2x2 rubik's cube domain.  See especially
+    *RUBE-OPS*, MAKE-RUBE-PROBLEM, MAKE-RANDOM-RUBE-PROBLEM, DO-RUBE-IDS,
+    TWO-CORNERS-SWAPPED, MAKE-FANCY-RUBE-PROBLEM.
+
+-----------------------------
+  rubik-probs-starter.lisp
+-----------------------------
+
+    Template (and CONTRACT) for the TWO-CORNERS-ROTATED goal-test func
+    for the Rubik's Cube domain.  
+
+    ==> You should provide one additional goal-test function for some
+        problem that you are interested in.
+
+-----------------------
+  tests-etc.lisp
+-----------------------
+
+    Automates testing of IDS and A-STAR on the eight-tile puzzle domain
+    and the 2x2x2 rubik's cube domain.
+
+    ==> You will add one test to DO-ALL-TESTS that causes IDS to be
+        run on the rubik's cube problem using the new GOAL-TEST
+        function you wrote in "rubik-probs-starter.lisp".  Use
+        the other tests in this file as a model.
+
+------------------------------------------------------------------
+
+==================================================================
+PART ONE:  Implementing Depth Limited Search (DLS) and Iterative
+           Deepening Search (IDS)
+==================================================================
+
+  *** You will define these functions in "ids-starter.lisp" ***
+
+  A.  First, take a look at the "wrapper" function, DLS, defined
+      in "basic-defns.lisp".  Here's the contract: 
+
+       ;;  DLS   --  wrapper function for DLS-GUTS
+       ;; ---------------------------------------------------------------
+       ;;  INPUTS: PROBLEM, a search problem
+       ;;          LIMIT, depth limit (a.k.a. cutoff depth) 
+       ;;  OUTPUT: A RESULTS data structure, whose contents report
+       ;;    the results of the search.  Of particular interest
+       ;;    is the GOAL-NODE slot whose value, at the end of
+       ;;    the search, will be one of the following:
+       ;;      -- A GOAL NODE, indicating success!
+       ;;      -- *CUTOFF*, indicating that no goal node was found,
+       ;;            but at least one node was created at the depth
+       ;;            limit (i.e., cutoff depth), hence searching
+       ;;            at a greater depth might yield a goal.
+       ;;      -- NIL, indicating that the search space was exhausted
+       ;;            without hitting the depth limit, hence any further
+       ;;            search would be a waste of time.
+
+     This function does the following:
+
+        (1) creates an initial RESULTS struct,
+        (2) calls the DLS-GUTS function (which you will have to write)
+        (3) handles bookkeeping re: the timer
+        (4) prints a message about the results of the search
+        (5) prints out some statistics (num nodes, timing info)
+        (6) returns the updated RESULTS struct as output
+
+  B.  In the file "ids-starter.lisp", define a function, called
+      DLS-GUTS, that does most of the work for DLS.  Here's the
+      contract (which is taken from "ids-starter.lisp"):
+
+       ;;  DLS-GUTS  --  should use TAIL-RECURSION or ITERATION
+       ;; ------------------------------------------------------------------
+       ;;  INPUTS:  PROB, a search problem instance
+       ;;           LIMIT, a non-negative integer (cutoff limit for DLS)
+       ;;           REZZY, a results struct (for compiling statistics)
+       ;;  OUTPUT:  The destructively modified RESULTS struct
+
+    The inputs PROB and LIMIT are just passed through from the
+    DLS wrapper function; they won't change for DLS-GUTS.
+ 
+    REZZY is a results struct that you should use to keep track of
+    information during the search.  For example, whenever you use the
+    EXPAND function to create new nodes, you should increment the
+    NUM-NODES field of REZZY.  And when the search is finished, you
+    should set the GOAL-NODE field of REZZY to NIL, *CUTOFF*, or a
+    goal node.  (*CUTOFF* is a global constant defined in
+    "basic-defns.lisp".)
+
+    HINT: See the solution to GEN-SEARCH-GUTS in "basic-defns.lisp".
+      It defines a local recursive helper function called GEN-REC.
+      You can do the same thing for this function: Use the LABELS
+      special form to create a local recursive function called DLS-REC
+      that takes two inputs: QUEUE and CUTOFF-REACHED?, as follows.
+
+        QUEUE is the search queue.  It starts out containing only the
+        root node, but acquires new nodes created by the EXPAND
+        function during the search.
+
+        CUTOFF-REACHED? is a boolean flag that is used to keep track
+        of whether the cutoff depth was ever reached during the
+        search.  This is needed to distinguish the case where the
+        search space was exhausted without hitting the cutoff depth
+        and the case where no goal node was found but the cutoff depth
+        was hit.  In the latter case, a future call to DLS with a
+        bigger LIMIT might yield a goal node.
+
+    NOTE:  Your definition of DLS-GUTS can be quite similar to 
+           the solution for GEN-SEARCH-GUTS, except that DLS-GUTS
+           must deal with NIL vs. CUTOFF, and DLS-GUTS can *hardwire*
+ 	   the FRONT-ENQUEUE! queuing function.
+
+           Before expanding a node, you simply check its depth.  If
+           its depth is less than L, you expand it as usual; however,
+           if its depth equals L, then you *don't* expand it (because
+           its child nodes would be at depth L+1).
+
+          ==> You can use EXPAND, CYCLE? and MAKE-ROOT-NODE
+	      from "basic-defns.lisp".
+
+     When making your recursive function call to DLS-GUTS, be careful
+     how you deal with CUTOFF-REACHED?  Also, be careful how you deal
+     with the case of an empty search queue.
+
+     By the way, you can test DLS on vacuum-world or missionaries and
+     cannibals, as well as the eights-tile puzzle domain.  Using small
+     depth limits makes things easy to check.  If you remove some of
+     the actions, you can ensure that no solution will be found; that
+     way you can check whether your NIL vs. CUTOFF answers are being
+     correctly generated.
+
+  C. Once you have DLS working, you can implement IDS as a function
+     that takes a search problem as its only input.  Here is its
+     contract (taken from "ids-starter.lisp"):
+
+       ;;  IDS
+       ;; -------------------------------------------------------
+       ;;  INPUT:   PROBLEM, a search problem
+       ;;  OUTPUT:  A RESULTS data structure that contains information
+       ;;           about the results of doing IDS on the given search 
+       ;;           problem.
+ 
+     Hints:
+
+       * The IDS function needs its own RESULTS struct.  You can call
+          it IDS-REZZY.  The IDS function should set the START-TIME of
+          its IDS-REZZY struct.  Then it should go into a loop.
+          (Maybe a "WHILE" loop?)  For example, you might start with
+          LIMIT = 0.  Call DLS on the given problem with that LIMIT.
+          That call to DLS will return its own RESULTS struct; perhaps
+          you could call it DLS-REZZY.  The number of nodes searched
+          by DLS should be ADDED to the num-nodes field of IDS-REZZY.
+          Then use the PRINT-RESULTS-STATS function to display the
+          statistics for that round of DLS (without displaying the
+          sequences of ACTIONS/STATES if a goal node found).  Then
+          analyze what it found: one of NIL, *CUTOFF*, or a goal node.
+          If it's a goal node, great!  You can get out of the WHILE
+          loop.  If it's NIL...?  If it's *CUTOFF*...?  What then?  In
+          one case, you want to stop searching, in another you want to
+          increment LIMIT and try DLS again.
+
+          Don't forget to stop IDS-REZZY's clock when appropriate!
+
+
+==================================================================
+PART TWO:  Implementing A-STAR search.  
+==================================================================
+
+  *** You should define the functions in "a-star-starter.lisp" ***
+
+  Their contracts are given below (from "a-star-starter.lisp"):
+
+     ;;  A-STAR-SEARCH
+     ;; -------------------------------------------------
+     ;;  INPUTS:  PROB, a search problem
+     ;;           HEURISTIC, a heuristic function that is suitable
+     ;;              for the given kind of search problem (must be admissible)
+     ;;  OUTPUT:  The result of the search:  either a goal node or NIL.
+
+  Define a function called A-STAR-SEARCH that takes a PROBLEM and a
+  HEURISTIC function as its two inputs.  It should simply call
+  GEN-SEARCH, but needs to provide an appropriate queuing function.
+
+  Okay, so define a helper function called MAKE-F-QUEUING-FUNC.
+
+     ;;  MAKE-F-QUEUING-FUNC
+     ;; ---------------------------------------------
+     ;;  INPUT:   HEURISTIC, a heuristic function (that applies to nodes)
+     ;;  OUTPUT:  A queuing function that uses the F = G + H function
+     ;;           to sort the nodes in the queue.  In particular, the
+     ;;           queuing function's contract is:
+     ;;                INPUTS:  OLD-NODES, NEW-NODES
+     ;;                OUTPUT:  A list containing OLD-NODES and NEW-NODES
+     ;;                  sorted by the F = G + H function, where H is
+     ;;                  the HEURISTIC given to MAKE-F-QUEUING-FUNC.
+     
+  Its only input is a HEURISTIC function (e.g., the NUM-TILES
+  heuristic for the eight-tiles puzzle).  It returns as its
+  output a queuing FUNCTION that maintains a search queue in order of
+  F values, where the F values depend on the given heuristic.  It's
+  not as bad as it seems!
+
+  NOTE:  The LAMBDA special form can be used to create 
+         the F function, and then the Queuing Function.
+ 
+    Keep in mind that MAKE-F-QUEUING-FUNC doesn't return F ... instead
+    it returns a QUEUING function *based* on F.  So, use a LAMBDA
+    special form to create the queuing function.  Recall that queuing
+    functions take two inputs (old-nodes and new-nodes).  They sort
+    the new nodes and then merge them with the old nodes.
+    Fortunately, there are built-in Lisp functions called MERGE and
+    SORT to take care of these tasks.  Consider the following
+    examples:
+
+       CL-USER(2): (sort '(1 2 3 1 2 3) #'<=)
+       (1 1 2 2 3 3)
+       CL-USER(3): (sort '(1 2 3 1 2 3) #'<)
+       (1 1 2 2 3 3)
+       CL-USER(4): (sort '(-1 2 -3 -4 3 8 2) #'<)
+       (-4 -3 -1 2 2 3 8)
+       CL-USER(5): (sort '(-1 2 -3 -4 3 8 2) #'>)
+       (8 3 2 2 -1 -3 -4)
+
+    So, SORT takes a list and a comparison function and returns a sorted list.
+    However, it can do more.  For example, it can take an optional KEYWORD
+    input (confusingly) called :KEY that allows you to PRE-PROCESS the 
+    objects being sorted.  For example, if you want to sort the same
+    numbers according to the values of their SQUARES...
+    
+       CL-USER(5): (sort '(-1 2 -3 -4 3 8 2) #'< :key (lambda (x) (* x x)))
+       (-1 2 2 -3 3 -4 8)
+
+    Or, if you want to sort a list of pairs by the values of their
+    first entries:
+
+       CL-USER(6): (sort '((1 hi) (2 bye) (0 you) (4 me)) #'<= :key #'first)
+       ((0 YOU) (1 HI) (2 BYE) (4 ME))
+
+    MERGE is similar, except you have to TELL it what kind of output you
+    want.  We'll always ask it to generate a LIST as output.  (I know, I know.)
+    So, you can merge two already sorted lists according to some comparison
+    function...
+
+       CL-USER(7): (merge 'list '(1 3 5) '(2 4 6) #'<=)
+       (1 2 3 4 5 6)
+
+    And you can also give it a :KEY argument, for example, to merge two
+    sorted lists of pairs according to the values of their FIRST entries.
+
+       CL-USER(8): (merge 'list '((1 hi) (3 rope) (5 nope)) '((2 bye) (4 me)) 
+		          #'<= 
+		          :key #'first)
+       ((1 HI) (2 BYE) (3 ROPE) (4 ME) (5 NOPE))
+
+    In our case, the F function is applied to each NODE to determine the
+    sorting order.  And we are interested in having the nodes sorted into
+    increasing (or non-decreasing) order.
+
+
+==================================================================
+PART THREE:  Defining the MANHATTAN-DISTANCE heuristic for the
+               EIGHT-TILE PUZZLE DOMAIN.
+==================================================================
+
+    Look at the implementation of the Eights-Tile-Puzzle domain in
+    "eights.lisp".  Like with vacuum-world or missionaries and
+    cannibals, there is a STRUCT that holds desired state information.
+
+    The goal state of the puzzle should look like this:  
+
+        1 2 3
+        8 _ 4
+        7 6 5
+
+    Of course, that's what it looks like when printed out; the internal
+    representation need not be the same.
+
+    Check out the state-equality and goal-test functions.
+
+    And then there are the actions: BLANK-NORTH, BLANK-EAST,
+    BLANK-WEST, BLANK-SOUTH.  Note the generic DO-BLANK-MOVE function
+    that does all the dirty work for these action operators.
+
+    Look at the NUM-TILES-OUT heuristic function.  
+
+    Then look at the contract for the MANHATTAN-DISTANCE heuristic
+    in the "heuristic-starter.lisp" file.
+
+    ===> Implement the MANHATTAN-DISTANCE heuristic.    
+
+    RE: vectors or arrays, be sure to consult Graham's book for info.
+    Some illustrations are given below, but they are not complete.
+
+    ==> The use of SETF to destructively modify contents of arrays
+        or vectors is fine within COPY-VECK or COPY-ARRAY.  The other
+        uses of SETF effectively create global variables for illustrative
+        purposes only.
+
+     -------------------
+      VECTOR EXAMPLES -- notice use of LENGTH, MAKE-ARRAY, SVREF, SETF, DOTIMES
+     -------------------
+
+       CL-USER(48): (defun copy-veck (veck)
+       	       (let* ((len (length veck))
+       		      (new-veck (make-array len)))
+       		 (dotimes (i len)
+       		   (setf (svref new-veck i) (svref veck i)))
+       		 new-veck))
+       COPY-VECK
+       CL-USER(49): (setf vicki (vector 10 20 30 40 50))
+       #(10 20 30 40 50)
+       CL-USER(50): (svref vicki 3)
+       40
+       CL-USER(51): (setf (svref vicki 3) 9999)
+       9999
+       CL-USER(52): vicki
+       #(10 20 30 9999 50)
+       CL-USER(53): (setf (svref mickey 0) 8)
+       8
+       CL-USER(54): mickey
+       #(8 20 30 9999 50)
+       CL-USER(55): vicki
+       #(10 20 30 9999 50)
+
+     -------------------
+      ARRAY EXAMPLES -- notice use of MAKE-ARRAY, ARRAY-DIMENSIONS,
+                          ARRAY-DIMENSION, AREF, SETF, DOTIMES
+     -------------------
+
+       CL-USER(22): (defun copy-array (arrie) 
+         (let ((new-array (make-array (array-dimensions arrie))))
+           (dotimes (row (array-dimension arrie 0))
+             (dotimes (col (array-dimension arrie 1))
+       	(setf (aref new-array row col)
+       	  (aref arrie row col))))
+           new-array))
+       COPY-ARRAY
+       CL-USER(23): (setf harry (make-array '(2 3) 
+  				     :initial-contents 
+             	                     '((1 2 3) (10 20 30))))
+       #2A((1 2 3) (10 20 30))
+       CL-USER(24): (setf barry (copy-array harry))
+       #2A((1 2 3) (10 20 30))
+       CL-USER(25): (setf (aref harry 1 2) 999)
+       999
+       CL-USER(26): harry
+       #2A((1 2 3) (10 20 999))
+       CL-USER(27): barry
+       #2A((1 2 3) (10 20 30))
+
+==================================================================
+PART FOUR:  Implementing a couple of PROBLEMS for the 
+            2x2x2 RUBIK's CUBE domain.
+==================================================================
+
+  ---> Look at the file "rubik-probs-starter.lisp".
+
+   It contains a contract for a GOAL-TEST function called
+   TWO-CORNERS-ROTATED.  This goal-test function can be modeled after
+   the TWO-CORNERS-SWAPPED and THREE-CORNERS-ROTATED functions toward
+   the end of the "rubik.lisp" file.  See the descriptions of the
+   RUBIK struct defined at the beginning of the "rubik.lisp" file.
+   Each of the 7 movable cubies in the 2x2x2 rubik's cube has a
+   location and an orientation.  This info, for all 7 cubies, is
+   contained in the POSITIONS and ORIENTATIONS vectors in the RUBIK
+   struct.
+
+   ==> Implement the TWO-CORNERS-ROTATED function.
+
+   ==> Then implement a brand new goal-test function.
+       You should clearly describe what goal state this function
+       is looking for.  Be creative!
+
+
+PART FIVE:  Testing IDS and A-STAR on the EIGHT-TILE PUZZLE Domain;
+            and Testing IDS on the 2x2x2 RUBIK'S CUBE Domain.
+
+  ===> See the testing functions defined in "tests-etc.lisp".
+       If you load this file, it will:
+
+          (1) compile-and-load all of the files listed in
+              *list-o-files* (so, if you change the names of
+              any of your files, you should change their names
+              in *list-o-files* too); and then
+
+          (2) run a whole bunch of tests (see the DO-ALL-TESTS
+              function at the end).
+
+       NOTE: Until you get things working, you might want to comment
+              out some (or all) of the tests in "tests-etc.lisp"
+              before you load it.  After you define your unique
+              goal-test function in "rubik-probs-starter.lisp", you
+              should add an entry in DO-ALL-TESTS that causes IDS to
+              be run using that goal-test function.
+
+  When you are just getting started, you may want to run tests on
+  small problems.  For example, you could run IDS or A-STAR search on
+  a simple problem in the eight-tile puzzle domain, or a rubik's cube
+  that is just a few moves away from being solved.  When using A-STAR
+  on the eight-tile puzzle domain, try both heuristics: NUM-TILES-OUT
+  and MANHATTAN-DISTANCE.  One way to generate a simple problem is to
+  start with a goal state, then manually apply a few moves to it, then
+  run the search problem on it.  Here are some examples of how to do this:
+
+    RUBIK EXAMPLE:
+    --------------
+
+       CL-USER(3): (setf ruby (make-rubik))
+            --------/|
+           / Z / Z / |
+          /-------/|Y/
+         / Z / Z / |/|
+         --------|Y/ |
+         | X | X |/|Y/
+         |-------| |/
+         | X | X |Y/
+         --------|/
+       CL-USER(4): (setf ruby (rotate-x-clockwise ruby))
+            --------/|
+           / Z / Z / |
+          /-------/|Y/
+         / B / B / |/|
+         --------|Z/ |
+         | X | X |/|Y/
+         |-------| |/
+         | X | X |Z/
+         --------|/
+       CL-USER(5): (setf ruby (rotate-y-clockwise ruby))
+            --------/|
+           / Z / X / |
+          /-------/|Z/
+         / B / X / |/|
+         --------|Z/ |
+         | X | Y |/|Y/
+         |-------| |/
+         | X | C |Y/
+         --------|/
+       CL-USER(6): (ids (make-rube-problem ruby))
+
+
+    EIGHTS Example:
+    --------------
+
+       CL-USER(20): (setf eighty (init-eights))
+
+       1 2 3 
+       8 _ 4 
+       7 6 5 
+       CL-USER(21): (setf eighty (blank-north eighty))
+
+       1 _ 3 
+       8 2 4 
+       7 6 5 
+       CL-USER(22): (setf eighty (blank-west eighty))
+
+       _ 1 3 
+       8 2 4 
+       7 6 5 
+       CL-USER(23): (ids (make-eights-prob-v2 eighty)) 
+
+===========================================================================
+
+SUMBISSION INSTRUCTIONS
+
+   After everything is working, start a brand new aclemacs Lisp session
+   and type:  (load "tests-etc.lisp" :verbose nil).  If the results look
+   good, save them to a file:  that will be your SAVED INTERACTIONS.
+
+   Please submit a PRINTOUT of **ONLY** the following files.
+   (You are not supposed to change anything in the other files, so there
+   is no need to print them out.)
+ 
+    ***** STAPLED IN THE ORDER SHOWN!!!! *****
+
+       ids-starter.lisp
+       a-star-starter.lisp
+       heuristic-starter.lisp
+       rubik-probs-starter.lisp
+       tests-etc.lisp
+       YOUR_SAVED_INTERACTIONS
+
+    (You may wish to change the names of these files so that 
+     your name appears in them somewhere.)
+
+    Submit your directory as usual:  submit365 asmt3 YOUR_ASMT3_DIRECTORY
+
+    (Only one paper, and one electronic submission if you worked in a pair.)

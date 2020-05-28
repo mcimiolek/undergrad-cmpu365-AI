@@ -1,0 +1,2592 @@
+CL-USER(1): ;; Setting (stream-external-format *terminal-io*) to :emacs-mule.
+CL-USER(2): (load "tests-etc")
+; Loading /home/mcimiolek/Desktop/asmt3 working/myasmt3/tests-etc.lisp
+;   Loading /home/mcimiolek/Desktop/asmt3 working/myasmt3/asmt-helper.lisp
+
+
+====================================
+  CMPU-365, Spring 2019
+  Asmt. 3
+  Solutions! - Matthew Imiolek, Amy O'Connell
+====================================
+
+Warning: While compiling these undefined functions were referenced:
+         DLS-GUTS from position 17003 in basic-defns.lisp
+Expression: (TEST-EIGHTS-IDS-1)
+----------------------
+==========================================
+ ITERATIVE-DEEPENING SEARCH 
+==========================================
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 0
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 0 nodes 
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 1
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 4 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 2
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 12 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 3
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 20 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 4
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 36 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 5
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 68 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 6
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 132 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 7
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 212 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 8
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 372 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 9
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 644 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 10
+-----------------------------------------
+Hey!  We found a goal node!!
+Search Result:  FOUND A GOAL NODE!
+Generated 20 nodes in 0.0 seconds (0.0 sec/node)
+
+----------------------
+===> Search Result:  FOUND A GOAL NODE!
+Generated 1520 nodes in 0.0 seconds (0.0 sec/node)
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: 
+1 2 3 
+4 _ 5 
+6 8 7 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+_ 4 5 
+6 8 7 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+6 4 5 
+_ 8 7 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+6 4 5 
+8 _ 7 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+6 4 5 
+8 7 _ 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 3 
+6 4 _ 
+8 7 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+6 _ 4 
+8 7 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+_ 6 4 
+8 7 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+8 6 4 
+_ 7 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+8 6 4 
+7 _ 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 3 
+8 _ 4 
+7 6 5 
+
+)
+==============================================
+*** END SOLUTION PATH (length: 10) ***
+==============================================
+
+
+Expression: (TEST-EIGHTS-STAR-1NT)
+----------------------
+Hey!  We found a goal node!!
+
+Generated 21 nodes in 0.0 seconds (0.0 sec/node)
+
+----------------------
+===> Search Result:  FOUND A GOAL NODE!
+Generated 21 nodes in 0.0 seconds (0.0 sec/node)
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: 
+1 2 3 
+4 _ 5 
+6 8 7 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+_ 4 5 
+6 8 7 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+6 4 5 
+_ 8 7 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+6 4 5 
+8 _ 7 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+6 4 5 
+8 7 _ 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 3 
+6 4 _ 
+8 7 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+6 _ 4 
+8 7 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+_ 6 4 
+8 7 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+8 6 4 
+_ 7 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+8 6 4 
+7 _ 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 3 
+8 _ 4 
+7 6 5 
+
+)
+==============================================
+*** END SOLUTION PATH (length: 10) ***
+==============================================
+
+
+Expression: (TEST-EIGHTS-STAR-1M)
+----------------------
+Hey!  We found a goal node!!
+
+Generated 21 nodes in 0.0 seconds (0.0 sec/node)
+
+----------------------
+===> Search Result:  FOUND A GOAL NODE!
+Generated 21 nodes in 0.0 seconds (0.0 sec/node)
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: 
+1 2 3 
+4 _ 5 
+6 8 7 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+_ 4 5 
+6 8 7 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+6 4 5 
+_ 8 7 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+6 4 5 
+8 _ 7 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+6 4 5 
+8 7 _ 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 3 
+6 4 _ 
+8 7 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+6 _ 4 
+8 7 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+_ 6 4 
+8 7 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+8 6 4 
+_ 7 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+8 6 4 
+7 _ 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 3 
+8 _ 4 
+7 6 5 
+
+)
+==============================================
+*** END SOLUTION PATH (length: 10) ***
+==============================================
+
+
+Expression: (TEST-EIGHTS-IDS-2)
+----------------------
+==========================================
+ ITERATIVE-DEEPENING SEARCH 
+==========================================
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 0
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 0 nodes 
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 1
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 3 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 2
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 8 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 3
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 18 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 4
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 32 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 5
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 60 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 6
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 104 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 7
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 192 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 8
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 320 nodes in 0.02 seconds (6.2499996e-5 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 9
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 576 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 10
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 968 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 11
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 1752 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 12
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 2908 nodes in 0.02 seconds (6.877579e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 13
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 5216 nodes in 0.02 seconds (3.8343555e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 14
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 8700 nodes in 0.04 seconds (4.5977013e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 15
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 15660 nodes in 0.04 seconds (2.5542784e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 16
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 26012 nodes in 0.1 seconds (3.8443795e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 17
+-----------------------------------------
+Hey!  We found a goal node!!
+Search Result:  FOUND A GOAL NODE!
+Generated 14010 nodes in 0.04 seconds (2.8551035e-6 sec/node)
+
+----------------------
+===> Search Result:  FOUND A GOAL NODE!
+Generated 76539 nodes in 0.28 seconds (3.6582658e-6 sec/node)
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: 
+1 8 2 
+7 6 _ 
+5 3 4 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 8 2 
+7 _ 6 
+5 3 4 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 8 2 
+7 3 6 
+5 _ 4 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 8 2 
+7 3 6 
+5 4 _ 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 8 2 
+7 3 _ 
+5 4 6 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 8 2 
+7 _ 3 
+5 4 6 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 _ 2 
+7 8 3 
+5 4 6 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 _ 
+7 8 3 
+5 4 6 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+7 8 _ 
+5 4 6 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+7 8 6 
+5 4 _ 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+7 8 6 
+5 _ 4 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+7 8 6 
+_ 5 4 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 3 
+_ 8 6 
+7 5 4 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+8 _ 6 
+7 5 4 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 3 
+8 6 _ 
+7 5 4 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+8 6 4 
+7 5 _ 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+8 6 4 
+7 _ 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 3 
+8 _ 4 
+7 6 5 
+
+)
+==============================================
+*** END SOLUTION PATH (length: 17) ***
+==============================================
+
+
+Expression: (TEST-EIGHTS-STAR-2NT)
+----------------------
+Hey!  We found a goal node!!
+
+Generated 3551 nodes in 0.08 seconds (2.2528864e-5 sec/node)
+
+----------------------
+===> Search Result:  FOUND A GOAL NODE!
+Generated 3551 nodes in 0.08 seconds (2.2528864e-5 sec/node)
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: 
+1 8 2 
+7 6 _ 
+5 3 4 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 8 2 
+7 6 4 
+5 3 _ 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 8 2 
+7 6 4 
+5 _ 3 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 8 2 
+7 _ 4 
+5 6 3 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 8 2 
+_ 7 4 
+5 6 3 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 8 2 
+5 7 4 
+_ 6 3 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 8 2 
+5 7 4 
+6 _ 3 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 8 2 
+5 _ 4 
+6 7 3 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 8 2 
+_ 5 4 
+6 7 3 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 8 2 
+6 5 4 
+_ 7 3 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 8 2 
+6 5 4 
+7 _ 3 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 8 2 
+6 _ 4 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 8 2 
+_ 6 4 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+_ 8 2 
+1 6 4 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+8 _ 2 
+1 6 4 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+8 2 _ 
+1 6 4 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+8 2 4 
+1 6 _ 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+8 2 4 
+1 6 3 
+7 5 _ 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+8 2 4 
+1 6 3 
+7 _ 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+8 2 4 
+1 _ 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+8 _ 4 
+1 2 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 8 4 
+1 2 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 8 4 
+_ 2 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 8 4 
+2 _ 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 8 4 
+2 3 _ 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 8 _ 
+2 3 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 _ 8 
+2 3 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 1 8 
+2 3 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+2 1 8 
+_ 3 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+2 1 8 
+3 _ 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+2 _ 8 
+3 1 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 2 8 
+3 1 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+3 2 8 
+_ 1 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+3 2 8 
+1 _ 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+3 _ 8 
+1 2 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 3 8 
+1 2 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 3 8 
+_ 2 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 3 8 
+2 _ 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 3 8 
+2 4 _ 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 3 _ 
+2 4 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 _ 3 
+2 4 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 1 3 
+2 4 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+2 1 3 
+_ 4 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+2 1 3 
+4 _ 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+2 1 3 
+4 8 _ 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+2 1 _ 
+4 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+2 _ 1 
+4 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 2 1 
+4 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+4 2 1 
+_ 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+4 2 1 
+8 _ 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+4 _ 1 
+8 2 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+4 1 _ 
+8 2 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+4 1 3 
+8 2 _ 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+4 1 3 
+8 _ 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+4 _ 3 
+8 1 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 4 3 
+8 1 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+8 4 3 
+_ 1 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+8 4 3 
+1 _ 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+8 _ 3 
+1 4 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 8 3 
+1 4 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 8 3 
+_ 4 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 8 3 
+4 _ 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 _ 3 
+4 8 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 3 _ 
+4 8 2 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 3 2 
+4 8 _ 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 3 2 
+4 _ 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 _ 2 
+4 3 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 _ 
+4 3 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 8 
+4 3 _ 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 8 
+4 _ 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 8 
+4 6 3 
+7 _ 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 8 
+4 6 3 
+_ 7 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 8 
+_ 6 3 
+4 7 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 8 
+6 _ 3 
+4 7 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 8 
+6 7 3 
+4 _ 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 8 
+6 7 3 
+_ 4 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 8 
+_ 7 3 
+6 4 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 8 
+7 _ 3 
+6 4 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 8 
+7 4 3 
+6 _ 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 8 
+7 4 3 
+_ 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 2 8 
+_ 4 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+_ 2 8 
+1 4 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+2 _ 8 
+1 4 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+2 8 _ 
+1 4 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+2 8 3 
+1 4 _ 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+2 8 3 
+1 _ 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+2 8 3 
+_ 1 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+_ 8 3 
+2 1 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+8 _ 3 
+2 1 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+8 1 3 
+2 _ 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+8 1 3 
+_ 2 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+_ 1 3 
+8 2 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 _ 3 
+8 2 4 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+8 _ 4 
+7 6 5 
+
+)
+==============================================
+*** END SOLUTION PATH (length: 93) ***
+==============================================
+
+
+Expression: (TEST-EIGHTS-STAR-2M)
+----------------------
+Hey!  We found a goal node!!
+
+Generated 988 nodes in 0.06 seconds (6.0728744e-5 sec/node)
+
+----------------------
+===> Search Result:  FOUND A GOAL NODE!
+Generated 988 nodes in 0.06 seconds (6.0728744e-5 sec/node)
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+         STATE: 
+1 8 2 
+7 6 _ 
+5 3 4 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 8 2 
+7 6 4 
+5 3 _ 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 8 2 
+7 6 4 
+5 _ 3 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 8 2 
+7 6 4 
+_ 5 3 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 8 2 
+_ 6 4 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+_ 8 2 
+1 6 4 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+8 _ 2 
+1 6 4 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+8 2 _ 
+1 6 4 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+8 2 4 
+1 6 _ 
+7 5 3 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+8 2 4 
+1 6 3 
+7 5 _ 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+8 2 4 
+1 6 3 
+7 _ 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+8 2 4 
+1 _ 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+8 2 4 
+_ 1 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+_ 2 4 
+8 1 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+2 _ 4 
+8 1 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+2 1 4 
+8 _ 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+2 1 4 
+_ 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+_ 1 4 
+2 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 _ 4 
+2 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 4 _ 
+2 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 4 3 
+2 8 _ 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 4 3 
+2 _ 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 _ 3 
+2 4 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 1 3 
+2 4 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+2 1 3 
+_ 4 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+2 1 3 
+4 _ 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+2 _ 3 
+4 1 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 2 3 
+4 1 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+4 2 3 
+_ 1 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+4 2 3 
+1 _ 8 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+4 2 3 
+1 8 _ 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+4 2 _ 
+1 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+4 _ 2 
+1 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+_ 4 2 
+1 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 4 2 
+_ 8 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 4 2 
+8 _ 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-NORTH>)
+         STATE: 
+1 _ 2 
+8 4 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-EAST>)
+         STATE: 
+1 2 _ 
+8 4 3 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-SOUTH>)
+         STATE: 
+1 2 3 
+8 4 _ 
+7 6 5 
+
+ NODE:  (action = #<Function BLANK-WEST>)
+         STATE: 
+1 2 3 
+8 _ 4 
+7 6 5 
+
+)
+==============================================
+*** END SOLUTION PATH (length: 39) ***
+==============================================
+
+
+Expression: (TEST-RUBE-IDS-THREE-CORNERS-ROTATED)
+----------------------
+==========================================
+ ITERATIVE-DEEPENING SEARCH 
+==========================================
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 0
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 0 nodes 
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 1
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 3 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 2
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 12 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 3
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 39 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 4
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 117 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 5
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 345 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 6
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 1011 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 7
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 2955 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 8
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 8631 nodes in 0.02 seconds (2.3172286e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 9
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 25203 nodes in 0.06 seconds (2.380669e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 10
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 73587 nodes in 0.12 seconds (1.6307227e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 11
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 214851 nodes in 0.44 seconds (2.0479308e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 12
+-----------------------------------------
+Hey!  We found a goal node!!
+Search Result:  FOUND A GOAL NODE!
+Generated 360393 nodes in 0.7 seconds (1.942324e-6 sec/node)
+
+----------------------
+===> Search Result:  FOUND A GOAL NODE!
+Generated 687147 nodes in 1.34 seconds (1.9500922e-6 sec/node)
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+     --------/|
+    / Z / Z / |
+   /-------/|Y/
+  / Z / Z / |/|
+  --------|Y/ |
+  | X | X |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / X / |
+   /-------/|Y/
+  / Z / X / |/|
+  --------|Y/ |
+  | X | C |/|Y/
+  |-------| |/
+  | X | C |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / Z / X / |
+   /-------/|Y/
+  / B / B / |/|
+  --------|Z/ |
+  | X | X |/|Y/
+  |-------| |/
+  | C | C |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / B / Z / |
+   /-------/|A/
+  / B / X / |/|
+  --------|Z/ |
+  | Z | Y |/|Y/
+  |-------| |/
+  | C | C |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / B / Y / |
+   /-------/|Z/
+  / B / C / |/|
+  --------|X/ |
+  | Z | Y |/|A/
+  |-------| |/
+  | C | A |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / B / Y / |
+   /-------/|Z/
+  / A / X / |/|
+  --------|B/ |
+  | C | Z |/|A/
+  |-------| |/
+  | A | Y |C/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / A / B / |
+   /-------/|C/
+  / X / Y / |/|
+  --------|X/ |
+  | B | Z |/|A/
+  |-------| |/
+  | A | Y |C/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / A / Z / |
+   /-------/|X/
+  / X / Y / |/|
+  --------|C/ |
+  | B | X |/|C/
+  |-------| |/
+  | A | B |A/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / A / Z / |
+   /-------/|X/
+  / Z / Z / |/|
+  --------|X/ |
+  | A | B |/|C/
+  |-------| |/
+  | B | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / A / |
+   /-------/|Y/
+  / Z / Z / |/|
+  --------|Y/ |
+  | X | X |/|C/
+  |-------| |/
+  | B | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / X / |
+   /-------/|Y/
+  / Z / X / |/|
+  --------|Y/ |
+  | X | C |/|Y/
+  |-------| |/
+  | B | X |C/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / Z / X / |
+   /-------/|Y/
+  / Z / B / |/|
+  --------|Z/ |
+  | B | X |/|Y/
+  |-------| |/
+  | X | C |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|Y/
+  / B / X / |/|
+  --------|Z/ |
+  | Z | Y |/|Y/
+  |-------| |/
+  | X | C |X/
+  --------|/
+         STATE: 
+)
+==============================================
+*** END SOLUTION PATH (length: 12) ***
+==============================================
+
+
+Expression: (TEST-RUBE-IDS-TWO-CORNERS-SWAPPED)
+----------------------
+==========================================
+ ITERATIVE-DEEPENING SEARCH 
+==========================================
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 0
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 0 nodes 
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 1
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 3 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 2
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 12 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 3
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 39 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 4
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 117 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 5
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 345 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 6
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 1011 nodes in 0.02 seconds (1.9782394e-5 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 7
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 2955 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 8
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 8631 nodes in 0.02 seconds (2.3172286e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 9
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 25203 nodes in 0.04 seconds (1.5871126e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 10
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 73587 nodes in 0.14 seconds (1.90251e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 11
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 214851 nodes in 0.42 seconds (1.9548431e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 12
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 627279 nodes in 1.22 seconds (1.944908e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 13
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 1831395 nodes in 3.72 seconds (2.0312384e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 14
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 5345823 nodes in 11.16 seconds (2.0876112e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 15
+-----------------------------------------
+Hey!  We found a goal node!!
+Search Result:  FOUND A GOAL NODE!
+Generated 163361 nodes in 0.34 seconds (2.0812802e-6 sec/node)
+
+----------------------
+===> Search Result:  FOUND A GOAL NODE!
+Generated 8294612 nodes in 17.08 seconds (2.059168e-6 sec/node)
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+     --------/|
+    / Z / Z / |
+   /-------/|Y/
+  / Z / Z / |/|
+  --------|Y/ |
+  | X | X |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|A/
+  / Z / Z / |/|
+  --------|A/ |
+  | Y | Y |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|B/
+  / Z / Z / |/|
+  --------|B/ |
+  | A | A |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|X/
+  / Z / Z / |/|
+  --------|X/ |
+  | B | B |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / B / |
+   /-------/|X/
+  / Z / X / |/|
+  --------|Y/ |
+  | B | C |/|X/
+  |-------| |/
+  | X | C |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / Z / B / |
+   /-------/|X/
+  / B / A / |/|
+  --------|Z/ |
+  | X | B |/|X/
+  |-------| |/
+  | C | C |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / B / |
+   /-------/|Z/
+  / B / C / |/|
+  --------|X/ |
+  | X | Y |/|X/
+  |-------| |/
+  | C | Y |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / B / Z / |
+   /-------/|Y/
+  / C / B / |/|
+  --------|A/ |
+  | X | Z |/|X/
+  |-------| |/
+  | C | Y |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / C / B / |
+   /-------/|C/
+  / B / Z / |/|
+  --------|A/ |
+  | A | Y |/|X/
+  |-------| |/
+  | C | Y |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / C / Y / |
+   /-------/|A/
+  / B / Y / |/|
+  --------|X/ |
+  | A | Z |/|C/
+  |-------| |/
+  | C | Z |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / C / Y / |
+   /-------/|A/
+  / A / Z / |/|
+  --------|B/ |
+  | C | A |/|C/
+  |-------| |/
+  | Z | Z |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / A / C / |
+   /-------/|Y/
+  / Z / Y / |/|
+  --------|Z/ |
+  | B | A |/|C/
+  |-------| |/
+  | Z | Z |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / A / |
+   /-------/|Y/
+  / Y / C / |/|
+  --------|X/ |
+  | Z | Y |/|C/
+  |-------| |/
+  | Z | Z |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / Z / A / |
+   /-------/|Y/
+  / B / A / |/|
+  --------|Y/ |
+  | Z | Z |/|C/
+  |-------| |/
+  | Z | Y |C/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|Y/
+  / B / Y / |/|
+  --------|C/ |
+  | Z | X |/|Y/
+  |-------| |/
+  | Z | X |C/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|Y/
+  / X / X / |/|
+  --------|B/ |
+  | Z | Z |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+)
+==============================================
+*** END SOLUTION PATH (length: 15) ***
+==============================================
+
+
+Expression: (TEST-RUBE-IDS-TWO-CORNERS-ROTATED)
+----------------------
+==========================================
+ ITERATIVE-DEEPENING SEARCH 
+==========================================
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 0
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 0 nodes 
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 1
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 3 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 2
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 12 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 3
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 39 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 4
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 117 nodes in 0.02 seconds (1.7094017e-4 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 5
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 345 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 6
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 1011 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 7
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 2955 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 8
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 8631 nodes in 0.02 seconds (2.3172286e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 9
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 25203 nodes in 0.04 seconds (1.5871126e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 10
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 73587 nodes in 0.14 seconds (1.90251e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 11
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 214851 nodes in 0.42 seconds (1.9548431e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 12
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 627279 nodes in 1.24 seconds (1.9767917e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 13
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 1831395 nodes in 3.7 seconds (2.0203179e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 14
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 5345823 nodes in 10.98 seconds (2.05394e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 15
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 15604215 nodes in 32.74 seconds (2.098151e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 16
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 45547641 nodes in 97.68 seconds (2.1445678e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 17
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 132950781 nodes in 295.36 seconds (2.2215738e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 18
+-----------------------------------------
+Hey!  We found a goal node!!
+Search Result:  FOUND A GOAL NODE!
+Generated 30716169 nodes in 70.72 seconds (2.3023706e-6 sec/node)
+
+----------------------
+===> Search Result:  FOUND A GOAL NODE!
+Generated 232950057 nodes in 513.06 seconds (2.2024462e-6 sec/node)
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+     --------/|
+    / Z / Z / |
+   /-------/|Y/
+  / Z / Z / |/|
+  --------|Y/ |
+  | X | X |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|A/
+  / Z / Z / |/|
+  --------|A/ |
+  | Y | Y |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|B/
+  / Z / Z / |/|
+  --------|B/ |
+  | A | A |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|B/
+  / B / Y / |/|
+  --------|Z/ |
+  | X | A |/|Y/
+  |-------| |/
+  | X | A |Z/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / B / Z / |
+   /-------/|X/
+  / Y / Z / |/|
+  --------|X/ |
+  | Z | B |/|Y/
+  |-------| |/
+  | X | A |Z/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / B / Z / |
+   /-------/|X/
+  / C / A / |/|
+  --------|Y/ |
+  | X | Z |/|Y/
+  |-------| |/
+  | A | B |Z/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / B / Z / |
+   /-------/|X/
+  / B / Y / |/|
+  --------|C/ |
+  | A | X |/|Y/
+  |-------| |/
+  | B | Z |A/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / B / Z / |
+   /-------/|X/
+  / X / Z / |/|
+  --------|B/ |
+  | B | A |/|Y/
+  |-------| |/
+  | Z | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / B / A / |
+   /-------/|B/
+  / X / X / |/|
+  --------|Y/ |
+  | B | C |/|X/
+  |-------| |/
+  | Z | C |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / X / B / |
+   /-------/|C/
+  / X / A / |/|
+  --------|Z/ |
+  | Y | B |/|X/
+  |-------| |/
+  | Z | C |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / X / B / |
+   /-------/|C/
+  / Y / C / |/|
+  --------|X/ |
+  | Z | Y |/|X/
+  |-------| |/
+  | C | B |A/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Y / X / |
+   /-------/|Z/
+  / C / B / |/|
+  --------|X/ |
+  | X | C |/|X/
+  |-------| |/
+  | C | B |A/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / C / Y / |
+   /-------/|A/
+  / B / X / |/|
+  --------|B/ |
+  | X | Z |/|X/
+  |-------| |/
+  | C | B |A/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / C / Y / |
+   /-------/|A/
+  / A / C / |/|
+  --------|B/ |
+  | C | X |/|X/
+  |-------| |/
+  | B | Z |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / C / Y / |
+   /-------/|A/
+  / Z / Y / |/|
+  --------|A/ |
+  | B | C |/|X/
+  |-------| |/
+  | Z | X |C/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / C / |
+   /-------/|Y/
+  / Y / Y / |/|
+  --------|Z/ |
+  | A | A |/|X/
+  |-------| |/
+  | Z | X |C/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / Z / C / |
+   /-------/|Y/
+  / B / C / |/|
+  --------|Y/ |
+  | Z | A |/|X/
+  |-------| |/
+  | X | A |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / A / |
+   /-------/|Y/
+  / B / A / |/|
+  --------|Y/ |
+  | Z | Z |/|Y/
+  |-------| |/
+  | X | Y |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|Y/
+  / B / Y / |/|
+  --------|X/ |
+  | Z | Z |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+)
+==============================================
+*** END SOLUTION PATH (length: 18) ***
+==============================================
+
+
+Expression: (TEST-RUBE-IDS-TWO-THREE-SWAPPED)
+----------------------
+==========================================
+ ITERATIVE-DEEPENING SEARCH 
+==========================================
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 0
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 0 nodes 
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 1
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 3 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 2
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 12 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 3
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 39 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 4
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 117 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 5
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 345 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 6
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 1011 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 7
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 2955 nodes in 0.02 seconds (6.7681895e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 8
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 8631 nodes in 0.0 seconds (0.0 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 9
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 25203 nodes in 0.06 seconds (2.380669e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 10
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 73587 nodes in 0.14 seconds (1.90251e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 11
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 214851 nodes in 0.4 seconds (1.8617554e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 12
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 627279 nodes in 1.24 seconds (1.9767917e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 13
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 1831395 nodes in 3.68 seconds (2.0093973e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 14
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 5345823 nodes in 11.06 seconds (2.0689051e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 15
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 15604215 nodes in 32.86 seconds (2.1058413e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 16
+-----------------------------------------
+Cutoff reached!
+Search Result:  CUTOFF
+Generated 45547641 nodes in 97.88 seconds (2.1489586e-6 sec/node)
+-----------------------------------------
+DEPTH-LIMITED-SEARCH at limit 17
+-----------------------------------------
+Hey!  We found a goal node!!
+Search Result:  FOUND A GOAL NODE!
+Generated 5642072 nodes in 12.42 seconds (2.201319e-6 sec/node)
+
+----------------------
+===> Search Result:  FOUND A GOAL NODE!
+Generated 74925179 nodes in 159.76 seconds (2.1322605e-6 sec/node)
+*** BEGIN SOLUTION PATH ***
+
+(NODE:  (action = NIL)
+     --------/|
+    / Z / Z / |
+   /-------/|Y/
+  / Z / Z / |/|
+  --------|Y/ |
+  | X | X |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|A/
+  / Z / Z / |/|
+  --------|A/ |
+  | Y | Y |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|B/
+  / Z / Z / |/|
+  --------|B/ |
+  | A | A |/|Y/
+  |-------| |/
+  | X | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / A / |
+   /-------/|B/
+  / Z / X / |/|
+  --------|Y/ |
+  | A | C |/|B/
+  |-------| |/
+  | X | C |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / C / |
+   /-------/|Y/
+  / Z / C / |/|
+  --------|Y/ |
+  | A | A |/|B/
+  |-------| |/
+  | X | X |B/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|X/
+  / C / C / |/|
+  --------|X/ |
+  | Y | Y |/|B/
+  |-------| |/
+  | X | X |B/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / Y / |
+   /-------/|X/
+  / C / X / |/|
+  --------|B/ |
+  | Y | Z |/|X/
+  |-------| |/
+  | X | Z |B/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / Z / |
+   /-------/|B/
+  / C / Z / |/|
+  --------|B/ |
+  | Y | A |/|X/
+  |-------| |/
+  | X | Y |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / Z / A / |
+   /-------/|B/
+  / C / Y / |/|
+  --------|X/ |
+  | Y | Z |/|B/
+  |-------| |/
+  | X | C |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / Z / A / |
+   /-------/|B/
+  / B / A / |/|
+  --------|C/ |
+  | X | Y |/|B/
+  |-------| |/
+  | C | Z |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / B / Z / |
+   /-------/|Y/
+  / A / A / |/|
+  --------|Z/ |
+  | C | B |/|B/
+  |-------| |/
+  | C | Z |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / B / Z / |
+   /-------/|Y/
+  / Y / Y / |/|
+  --------|A/ |
+  | C | C |/|B/
+  |-------| |/
+  | Z | B |A/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / B / Z / |
+   /-------/|Y/
+  / X / X / |/|
+  --------|Y/ |
+  | Z | C |/|B/
+  |-------| |/
+  | B | C |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / B / C / |
+   /-------/|Y/
+  / X / C / |/|
+  --------|Y/ |
+  | Z | A |/|Y/
+  |-------| |/
+  | B | X |B/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / B / A / |
+   /-------/|Y/
+  / X / X / |/|
+  --------|B/ |
+  | Z | Z |/|Y/
+  |-------| |/
+  | B | A |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-X-CLOCKWISE>)
+     --------/|
+    / B / A / |
+   /-------/|Y/
+  / Z / Y / |/|
+  --------|X/ |
+  | B | Z |/|Y/
+  |-------| |/
+  | A | Z |X/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Y-CLOCKWISE>)
+     --------/|
+    / B / Z / |
+   /-------/|X/
+  / Z / Z / |/|
+  --------|X/ |
+  | B | B |/|Y/
+  |-------| |/
+  | A | X |Y/
+  --------|/
+         STATE: 
+ NODE:  (action = #<Function ROTATE-Z-CLOCKWISE>)
+     --------/|
+    / Z / B / |
+   /-------/|C/
+  / Z / Z / |/|
+  --------|Y/ |
+  | X | X |/|Y/
+  |-------| |/
+  | A | X |Y/
+  --------|/
+         STATE: 
+)
+==============================================
+*** END SOLUTION PATH (length: 17) ***
+==============================================
+
+
+T
+CL-USER(3): 

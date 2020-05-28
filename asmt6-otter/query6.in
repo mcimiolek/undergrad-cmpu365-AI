@@ -1,0 +1,16 @@
+%%% ============================================================
+%%%   Filename:	 query6.in
+%%%   CS 365:    Asst. #6
+%%%   Author:    Amy O'Connell, Matthew Imiolek
+%%%   Date:      {4/24/19}
+%%% ============================================================
+
+% It's midnight and young Annie is famished after a night of partying.
+% Where should she eat?
+
+Younger(Annie).
+OutLate(Annie).
+
+-(exists z (EatAt(Annie,z) & $ans(z))).
+
+end_of_list.
